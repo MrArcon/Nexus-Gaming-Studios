@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply — Nexus Gaming Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--red:#CC0000;--red2:#FF2222;--black:#080808;--black2:#111111;--black3:#1A1A1A;--white:#F5F5F5;--w2:rgba(245,245,245,0.75);--w3:rgba(245,245,245,0.35);--border:rgba(204,0,0,0.2);}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;overflow-x:hidden;}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--black2);}::-webkit-scrollbar-thumb{background:#8B0000;border-radius:3px;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:68px;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-logo{display:flex;align-items:center;gap:0.8rem;text-decoration:none;}
+    .nav-logo img{width:42px;height:42px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
+    .nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.1em;color:var(--white);}
+    .nav-logo-text span{color:var(--red);}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--w3);text-decoration:none;font-size:0.76rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a.active{color:var(--red);}
+    .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.45rem 1.3rem;border-radius:2px;}
+    .nav-cta:hover{background:var(--red2)!important;}
+
+    /* PAGE HEADER */
+    .page-header{padding:9rem 4rem 3rem;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--border);}
+    .header-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+    .header-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5rem);letter-spacing:0.04em;line-height:0.95;margin-bottom:1rem;}
+    .header-bar{width:44px;height:3px;background:var(--red);margin:1rem 0;}
+    .header-desc{font-size:1rem;color:var(--w2);max-width:600px;line-height:1.8;}
+
+    /* REQUIREMENTS */
+    .req-wrap{max-width:1200px;margin:0 auto;padding:3rem 4rem 0;}
+    .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
+    .req-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:2rem;position:relative;overflow:hidden;}
+    .req-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red);}
+    .req-type{font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+    .req-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem;}
+    .req-desc{font-size:0.88rem;color:var(--w2);line-height:1.8;margin-bottom:1.2rem;}
+    .req-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .req-list li{font-size:0.85rem;color:var(--w3);display:flex;align-items:flex-start;gap:0.8rem;line-height:1.5;}
+    .req-list li::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:0.45rem;}
+    .req-note{margin-top:1rem;font-size:0.78rem;color:rgba(204,0,0,0.7);font-style:italic;}
+
+    /* FORM */
+    .form-wrap{max-width:800px;margin:0 auto;padding:3rem 4rem 6rem;}
+    .form-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.5rem;}
+    .form-subtitle{font-size:0.85rem;color:var(--w3);margin-bottom:2rem;}
+    .form-group{margin-bottom:1.5rem;}
+    .form-label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--w2);margin-bottom:0.5rem;}
+    .form-label span{color:var(--red);}
+    .form-input, .form-select, .form-textarea{
+      width:100%;background:var(--black3);border:1px solid rgba(255,255,255,0.1);border-radius:3px;
+      color:var(--white);font-family:'Barlow',sans-serif;font-size:0.95rem;
+      padding:0.85rem 1rem;transition:border-color 0.2s;outline:none;
+    }
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--red);}
+    .form-input::placeholder,.form-textarea::placeholder{color:var(--w3);}
+    .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23CC0000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer;}
+    .form-select option{background:var(--black3);}
+    .form-textarea{resize:vertical;min-height:120px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .form-divider{border:none;border-top:1px solid var(--border);margin:2rem 0;}
+    .form-section-label{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--red);margin-bottom:1.2rem;}
+    .char-count{font-size:0.72rem;color:var(--w3);text-align:right;margin-top:0.3rem;}
+    .form-check{display:flex;align-items:flex-start;gap:0.8rem;cursor:pointer;}
+    .form-check input{width:16px;height:16px;accent-color:var(--red);flex-shrink:0;margin-top:0.2rem;cursor:pointer;}
+    .form-check-label{font-size:0.88rem;color:var(--w2);line-height:1.6;}
+    .submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;}
+    .btn-submit{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 3rem;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s,transform 0.1s;}
+    .btn-submit:hover:not(:disabled){background:var(--red2);transform:translateY(-2px);}
+    .btn-submit:disabled{opacity:0.5;cursor:not-allowed;}
+    .submit-note{font-size:0.8rem;color:var(--w3);line-height:1.5;}
+
+    /* SUCCESS / ERROR */
+    .alert{display:none;border-radius:3px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;font-size:0.9rem;line-height:1.6;}
+    .alert.show{display:block;}
+    .alert-success{background:rgba(0,180,80,0.1);border:1px solid rgba(0,180,80,0.3);color:rgba(100,255,150,0.9);}
+    .alert-error{background:rgba(204,0,0,0.1);border:1px solid rgba(204,0,0,0.3);color:rgba(255,100,100,0.9);}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;}
+    .footer-logo{display:flex;align-items:center;gap:0.7rem;}
+    .footer-logo img{width:30px;height:30px;border-radius:4px;}
+    .footer-logo span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:var(--w3);}
+    .footer-copy{font-size:0.7rem;color:var(--w3);}
+    .footer-links{display:flex;gap:1.5rem;}
+    .footer-links a{font-size:0.7rem;color:var(--w3);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--red);}
+
+    @media(max-width:900px){
+      nav{padding:0 1.5rem;}.nav-links{display:none;}
+      .page-header,.req-wrap,.form-wrap{padding-left:1.5rem;padding-right:1.5rem;}
+      .req-grid,.form-row{grid-template-columns:1fr;}
+      footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+      .footer-links{justify-content:center;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="NUGS"/>
+    <span class="nav-logo-text">NEXUS <span>GAMING</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="rules.html">Rules</a></li>
+    <li><a href="apply.html" class="active nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <p class="header-label">Join the Team</p>
+  <h1 class="header-title">Staff<br>Application</h1>
+  <div class="header-bar"></div>
+  <p class="header-desc">Thank you for your interest in joining the Nexus Gaming Studios team. Please read the position requirements carefully before submitting your application. All submissions are reviewed by senior staff and you will be contacted via Discord if selected.</p>
+</div>
+
+<!-- REQUIREMENTS -->
+<div class="req-wrap">
+  <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;">Before You Apply</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.3rem;">Position Requirements</h2>
+  <div style="width:44px;height:3px;background:var(--red);margin-bottom:0.5rem;"></div>
+  <p style="font-size:0.88rem;color:var(--w3);">Review the requirements for your desired position type before proceeding to the application form below.</p>
+
+  <div class="req-grid">
+    <!-- CAREER -->
+    <div class="req-card">
+      <p class="req-type">Paid &amp; Leadership Positions</p>
+      <h3 class="req-title">Career Roles</h3>
+      <p class="req-desc">Career positions represent the backbone of Nexus Gaming Studios. These roles carry real responsibility, leadership expectations, and long-term commitment to the studio and its projects. Candidates are expected to bring maturity, professionalism, and a genuine drive to contribute at the highest level.</p>
+      <ul class="req-list">
+        <li><strong>Age:</strong>&nbsp;18 years of age or older. Exceptions may be considered on a case-by-case basis for exceptionally qualified candidates.</li>
+        <li><strong>Literacy:</strong>&nbsp;Must possess strong written communication skills including the ability to form clear paragraphs, demonstrate critical thinking, and communicate professionally.</li>
+        <li><strong>Education:</strong>&nbsp;A high school diploma or equivalent is preferred. Exceptions may be made for candidates with relevant experience or demonstrated capability.</li>
+        <li><strong>Availability:</strong>&nbsp;Must be able to commit a consistent number of hours per week and communicate proactively about availability changes.</li>
+        <li><strong>Professionalism:</strong>&nbsp;Expected to represent the studio with integrity, resolve conflicts maturely, and lead by example within the community.</li>
+        <li><strong>Experience:</strong>&nbsp;Prior experience in moderation, game development, community management, or a related field is strongly preferred.</li>
+      </ul>
+      <p class="req-note">* Exceptions to age and education requirements are reviewed individually by studio leadership.</p>
+    </div>
+
+    <!-- VOLUNTEER -->
+    <div class="req-card">
+      <p class="req-type">Community &amp; Support Positions</p>
+      <h3 class="req-title">Volunteer Roles</h3>
+      <p class="req-desc">Volunteer positions are the entry point into the Nexus Gaming Studios team. These roles are ideal for passionate community members who want to contribute, grow their skills, and work toward a larger role within the studio. While the bar is more accessible, we still expect a high standard of conduct and dedication from all volunteers.</p>
+      <ul class="req-list">
+        <li><strong>Age:</strong>&nbsp;16 years of age or older. As our primary community is 18+, exceptions are made for volunteers who demonstrate exceptional maturity and responsibility.</li>
+        <li><strong>Conduct:</strong>&nbsp;Must have a clean or near-clean record within the Nexus Gaming Studios community. Prior bans or serious violations may disqualify an applicant.</li>
+        <li><strong>Commitment:</strong>&nbsp;Expected to be active, responsive, and engaged within the community on a regular basis.</li>
+        <li><strong>Communication:</strong>&nbsp;Must be able to communicate clearly and professionally with both players and staff members at all times.</li>
+        <li><strong>Attitude:</strong>&nbsp;A positive, team-first attitude is essential. Volunteers represent the studio and are held to the same conduct standards as all staff.</li>
+      </ul>
+      <p class="req-note">* Volunteers aged 16–17 will be reviewed individually to ensure suitability within our 18+ community environment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+  <hr class="form-divider"/>
+  <h2 class="form-title">Application Form</h2>
+  <p class="form-subtitle">All fields marked with an asterisk (*) are required. Incomplete applications will not be reviewed.</p>
+
+  <div id="alert-success" class="alert alert-success">
+    <strong>Application Submitted!</strong> Thank you for applying to Nexus Gaming Studios. Our senior staff will review your application and reach out via Discord within 3–5 business days. Please ensure your Discord DMs are open.
+  </div>
+  <div id="alert-error" class="alert alert-error">
+    <strong>Submission Failed.</strong> There was an issue sending your application. Please try again or reach out directly via our <a href="https://discord.gg/PxtKEDvZRF" target="_blank" style="color:inherit;">Discord server</a>.
+  </div>
+
+  <div class="form-section-label">Personal Information</div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="roblox">Roblox Username <span>*</span></label>
+      <input class="form-input" type="text" id="roblox" placeholder="YourRobloxUsername" maxlength="50"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="discord">Discord Username <span>*</span></label>
+      <input class="form-input" type="text" id="discord" placeholder="username or user#0000" maxlength="50"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="age">Age <span>*</span></label>
+      <input class="form-input" type="number" id="age" placeholder="e.g. 21" min="13" max="99"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="timezone">Timezone <span>*</span></label>
+      <select class="form-select" id="timezone">
+        <option value="">Select your timezone...</option>
+        <option>EST — Eastern Standard Time</option>
+        <option>CST — Central Standard Time</option>
+        <option>MST — Mountain Standard Time</option>
+        <option>PST — Pacific Standard Time</option>
+        <option>GMT — Greenwich Mean Time</option>
+        <option>CET — Central European Time</option>
+        <option>AEST — Australian Eastern Time</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <hr class="form-divider"/>
+  <div class="form-section-label">Position Details</div>
+
+  <div class="form-group">
+    <label class="form-label" for="postype">Position Type <span>*</span></label>
+    <select class="form-select" id="postype" onchange="updateRoles()">
+      <option value="">Select position type...</option>
+      <option value="career">Career Position</option>
+      <option value="volunteer">Volunteer Position</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="role">Desired Role <span>*</span></label>
+    <select class="form-select" id="role">
+      <option value="">Select position type first...</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="availability">Weekly Availability <span>*</span></label>
+    <select class="form-select" id="availability">
+      <option value="">Select availability...</option>
+      <option>Less than 5 hours per week</option>
+      <option>5–10 hours per week</option>
+      <option>10–20 hours per week</option>
+      <option>20+ hours per week</option>
+    </select>
+  </div>
+
+  <hr class="form-divider"/>
+  <div class="form-section-label">Application Questions</div>
+
+  <div class="form-group">
+    <label class="form-label" for="why">Why do you want to join Nexus Gaming Studios? <span>*</span></label>
+    <textarea class="form-textarea" id="why" placeholder="Tell us what motivates you to apply and why you'd be a great fit for the team..." maxlength="1000" oninput="updateCount('why','why-count')"></textarea>
+    <p class="char-count" id="why-count">0 / 1000</p>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="experience">Relevant Experience <span>*</span></label>
+    <textarea class="form-textarea" id="experience" placeholder="Describe any prior experience in moderation, game development, community management, roleplay, or anything else relevant to this role..." maxlength="1000" oninput="updateCount('experience','exp-count')"></textarea>
+    <p class="char-count" id="exp-count">0 / 1000</p>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="scenario">Scenario Question <span>*</span></label>
+    <p style="font-size:0.85rem;color:var(--w3);margin-bottom:0.6rem;font-style:italic;">A player is disrupting an active roleplay session and ignoring staff warnings. How would you handle the situation?</p>
+    <textarea class="form-textarea" id="scenario" placeholder="Walk us through how you would approach and resolve this situation..." maxlength="800" oninput="updateCount('scenario','scen-count')"></textarea>
+    <p class="char-count" id="scen-count">0 / 800</p>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="heardof">How did you hear about us?</label>
+    <select class="form-select" id="heardof">
+      <option value="">Select an option...</option>
+      <option>Roblox Group Page</option>
+      <option>Discord Server</option>
+      <option>Friend / Referral</option>
+      <option>Social Media</option>
+      <option>In-Game</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="additional">Anything else you'd like to add?</label>
+    <textarea class="form-textarea" id="additional" placeholder="Additional information, links, or anything else you'd like the review team to know..." maxlength="500" oninput="updateCount('additional','add-count')" style="min-height:90px;"></textarea>
+    <p class="char-count" id="add-count">0 / 500</p>
+  </div>
+
+  <hr class="form-divider"/>
+  <div class="form-group">
+    <label class="form-check">
+      <input type="checkbox" id="agree-rules"/>
+      <span class="form-check-label">I have read and agree to the <a href="rules.html" target="_blank" style="color:var(--red);">Community Rules</a> and understand that violations may result in removal from the team. <span style="color:var(--red);">*</span></span>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="form-check">
+      <input type="checkbox" id="agree-age"/>
+      <span class="form-check-label">I confirm that the information provided in this application is accurate and truthful to the best of my knowledge. <span style="color:var(--red);">*</span></span>
+    </label>
+  </div>
+
+  <div class="submit-row">
+    <button class="btn-submit" id="submit-btn" onclick="submitApplication()">Submit Application</button>
+    <p class="submit-note">Applications are reviewed by senior staff.<br>Response time is typically 3–5 business days.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <img src="data:image/png;base64,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" alt="logo"/>
+    <span>Nexus Gaming Studios</span>
+  </div>
+  <p class="footer-copy">© 2026 Nexus Gaming Studios · 18+ Community</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="rules.html">Rules</a>
+    <a href="https://discord.gg/PxtKEDvZRF" target="_blank">Discord</a>
+  </div>
+</footer>
+
+<script>
+const CAREER_ROLES = ["Lead Developer","Senior Developer","Department Head","Senior Moderation Staff","Studio Management","Community Director","Human Resources Lead"];
+const VOLUNTEER_ROLES = ["Community Moderator","In-Game Support Staff","Event Coordinator","Social Media & Content Creator","Recruitment Assistant","Player Relations Officer"];
+
+function updateRoles() {
+  const type = document.getElementById('postype').value;
+  const roleSelect = document.getElementById('role');
+  roleSelect.innerHTML = '<option value="">Select a role...</option>';
+  const roles = type === 'career' ? CAREER_ROLES : type === 'volunteer' ? VOLUNTEER_ROLES : [];
+  roles.forEach(r => { const o = document.createElement('option'); o.value = r; o.textContent = r; roleSelect.appendChild(o); });
+  if (!roles.length) roleSelect.innerHTML = '<option value="">Select position type first...</option>';
+}
+
+function updateCount(fieldId, countId) {
+  const el = document.getElementById(fieldId);
+  document.getElementById(countId).textContent = el.value.length + ' / ' + el.maxLength;
+}
+
+async function submitApplication() {
+  const get = id => document.getElementById(id)?.value?.trim() || '';
+  const roblox = get('roblox'), discord = get('discord'), age = get('age');
+  const tz = get('timezone'), postype = get('postype'), role = get('role');
+  const avail = get('availability'), why = get('why'), exp = get('experience');
+  const scenario = get('scenario'), heard = get('heardof'), extra = get('additional');
+  const agreeRules = document.getElementById('agree-rules').checked;
+  const agreeAge = document.getElementById('agree-age').checked;
+
+  if (!roblox||!discord||!age||!tz||!postype||!role||!avail||!why||!exp||!scenario) {
+    showAlert('error','Please fill in all required fields before submitting.'); return;
+  }
+  if (!agreeRules||!agreeAge) {
+    showAlert('error','Please confirm both acknowledgement checkboxes before submitting.'); return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+
+  const typeLabel = postype === 'career' ? '🔴 Career Position' : '🟡 Volunteer Position';
+  const color = postype === 'career' ? 0xCC0000 : 0xFFAA00;
+
+  const payload = {
+    username: "NUGS Applications",
+    avatar_url: "https://cdn.discordapp.com/embed/avatars/0.png",
+    embeds: [{
+      title: "📋 New Staff Application",
+      color: color,
+      fields: [
+        { name: "Roblox Username", value: roblox, inline: true },
+        { name: "Discord Username", value: discord, inline: true },
+        { name: "Age", value: age, inline: true },
+        { name: "Timezone", value: tz, inline: true },
+        { name: "Position Type", value: typeLabel, inline: true },
+        { name: "Desired Role", value: role, inline: true },
+        { name: "Weekly Availability", value: avail, inline: false },
+        { name: "Why do you want to join?", value: why.substring(0,1024), inline: false },
+        { name: "Relevant Experience", value: exp.substring(0,1024), inline: false },
+        { name: "Scenario Response", value: scenario.substring(0,1024), inline: false },
+        { name: "How they heard about us", value: heard || "Not specified", inline: true },
+        { name: "Additional Notes", value: extra || "None provided", inline: false }
+      ],
+      footer: { text: "Nexus Gaming Studios · Staff Applications" },
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  try {
+    const res = await fetch("https://discordapp.com/api/webhooks/1510014464429133887/y0N4CS2iVlpol6hOHG1OI8WHiekmymPR6J-IvERkcPHrR8Bh-g1DyNcmThhOlNS72vIC", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      showAlert('success');
+      document.querySelectorAll('.form-input,.form-select,.form-textarea').forEach(el => el.value = '');
+      document.getElementById('agree-rules').checked = false;
+      document.getElementById('agree-age').checked = false;
+      btn.textContent = 'Submitted!';
+    } else {
+      throw new Error('Bad response');
+    }
+  } catch(e) {
+    showAlert('error');
+    btn.disabled = false;
+    btn.textContent = 'Submit Application';
+  }
+}
+
+function showAlert(type, msg) {
+  document.getElementById('alert-success').classList.remove('show');
+  document.getElementById('alert-error').classList.remove('show');
+  const el = document.getElementById('alert-' + type);
+  if (msg) el.querySelector('strong').nextSibling.textContent = ' ' + msg;
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
