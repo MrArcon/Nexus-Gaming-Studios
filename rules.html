@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rules — Nexus Gaming Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--red:#CC0000;--red2:#FF2222;--black:#080808;--black2:#111111;--black3:#1A1A1A;--white:#F5F5F5;--w2:rgba(245,245,245,0.75);--w3:rgba(245,245,245,0.35);--border:rgba(204,0,0,0.2);}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--black2);}::-webkit-scrollbar-thumb{background:#8B0000;border-radius:3px;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:68px;background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-logo{display:flex;align-items:center;gap:0.8rem;text-decoration:none;}
+    .nav-logo img{width:42px;height:42px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
+    .nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.1em;color:var(--white);}
+    .nav-logo-text span{color:var(--red);}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--w3);text-decoration:none;font-size:0.76rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a.active{color:var(--red);}
+    .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.45rem 1.3rem;border-radius:2px;}
+    .nav-cta:hover{background:var(--red2)!important;}
+    .page-header{padding:9rem 4rem 4rem;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--border);}
+    .header-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+    .header-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);letter-spacing:0.04em;line-height:0.95;margin-bottom:1rem;}
+    .header-desc{font-size:1rem;color:var(--w2);max-width:600px;line-height:1.8;}
+    .header-bar{width:44px;height:3px;background:var(--red);margin:1.2rem 0;}
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);max-width:1200px;margin:0 auto;padding:0 4rem;}
+    .tab-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--w3);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:1.2rem 2rem 1rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;margin-bottom:-1px;}
+    .tab-btn:hover{color:var(--white);}
+    .tab-btn.active{color:var(--red);border-bottom-color:var(--red);}
+    .rules-wrap{max-width:1200px;margin:0 auto;padding:3rem 4rem 6rem;}
+    .rules-section{display:none;}
+    .rules-section.active{display:block;}
+    .rules-group{margin-bottom:3rem;}
+    .rules-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.8rem;}
+    .rules-group-title::before{content:'';display:inline-block;width:4px;height:22px;background:var(--red);border-radius:2px;flex-shrink:0;}
+    .rule-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1rem;transition:border-color 0.2s;}
+    .rule-card:hover{border-color:rgba(204,0,0,0.4);}
+    .rule-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.8rem;flex-wrap:wrap;}
+    .rule-name{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);}
+    .rule-badge{font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:2px;white-space:nowrap;flex-shrink:0;}
+    .badge-red{background:rgba(204,0,0,0.15);color:rgba(255,80,80,0.9);border:1px solid rgba(204,0,0,0.3);}
+    .badge-orange{background:rgba(200,120,0,0.15);color:rgba(255,160,60,0.9);border:1px solid rgba(200,120,0,0.3);}
+    .badge-gray{background:rgba(255,255,255,0.05);color:var(--w3);border:1px solid rgba(255,255,255,0.1);}
+    .badge-staff{background:rgba(50,100,200,0.15);color:rgba(100,160,255,0.9);border:1px solid rgba(50,100,200,0.3);}
+    .rule-desc{font-size:0.9rem;color:var(--w2);line-height:1.8;margin-bottom:1rem;}
+    .rule-examples{margin-bottom:1rem;}
+    .rule-examples-title{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--w3);margin-bottom:0.5rem;}
+    .rule-examples ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;}
+    .rule-examples li{font-size:0.85rem;color:var(--w3);display:flex;align-items:flex-start;gap:0.7rem;line-height:1.5;}
+    .rule-examples li::before{content:'';width:4px;height:4px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:0.5rem;}
+    .rule-outcome{background:rgba(204,0,0,0.05);border-left:3px solid var(--red);border-radius:0 2px 2px 0;padding:0.7rem 1rem;font-size:0.82rem;color:rgba(245,245,245,0.6);}
+    .rule-outcome strong{color:rgba(255,80,80,0.85);font-weight:600;}
+    .punish-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:0.5rem;}
+    .punish-step{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:1.2rem 1rem;text-align:center;}
+    .punish-step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--red);line-height:1;margin-bottom:0.3rem;}
+    .punish-step-name{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:0.4rem;}
+    .punish-step-desc{font-size:0.75rem;color:var(--w3);line-height:1.5;}
+    .final-note{background:rgba(204,0,0,0.06);border:1px solid rgba(204,0,0,0.2);border-radius:3px;padding:2rem;margin-top:3rem;text-align:center;}
+    .final-note h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem;}
+    .final-note p{font-size:0.9rem;color:var(--w2);max-width:600px;margin:0 auto 1.5rem;line-height:1.8;}
+    .btn-red{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2.2rem;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s;}
+    .btn-red:hover{background:var(--red2);}
+    .btn-outline{background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2.2rem;border:1px solid rgba(245,245,245,0.22);border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s;margin-left:1rem;}
+    .btn-outline:hover{border-color:var(--red);color:var(--red);}
+    footer{border-top:1px solid var(--border);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;}
+    .footer-logo{display:flex;align-items:center;gap:0.7rem;}
+    .footer-logo img{width:30px;height:30px;border-radius:4px;}
+    .footer-logo span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:var(--w3);}
+    .footer-copy{font-size:0.7rem;color:var(--w3);}
+    .footer-links{display:flex;gap:1.5rem;}
+    .footer-links a{font-size:0.7rem;color:var(--w3);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--red);}
+    @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.page-header,.rules-wrap{padding-left:1.5rem;padding-right:1.5rem;}.tabs{padding:0 1.5rem;overflow-x:auto;}.punish-grid{grid-template-columns:repeat(2,1fr);}footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}.footer-links{justify-content:center;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCACWAJYDASIAAhEBAxEB/8QAHQABAAEEAwEAAAAAAAAAAAAAAAQDBgcIAgUJAf/EAEMQAAEDAwEEBQYLBQkAAAAAAAEAAgMEBREGBxIhMRMiQVGhCBQyYXGBFSNCUmKCkZKisdEJFjNUciQmNENl0uHw8f/EABsBAQACAwEBAAAAAAAAAAAAAAABAgMFBwYE/8QALhEAAgEDAgMGBQUAAAAAAAAAAAECAwQRITEFBhITIkFRgZEHFCPB8FJhcaHh/9oADAMBAAIRAxEAPwDTRERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEXOOOSQ4jY5xHcMqp5pUnlDJ90qG0i8ac5bIoIq/mdV/Ly/dKpPY5jy17S1w5gommJU5R3RxRVIoJpQTHE94HA4C5+ZVf8ALyfdKdSCpTaykUEUgUNWeVNKfqFDQ1gGTTSgethTqRPY1P0sjovrmua4tcCCOYKkQ0FbN/BpJ5P6IyUyUUW9kRkU74HuwGTbKwDv6B36KPPSVUI3pqeWMfSYQmUT0S8iiiIpKhERAEREAREQEm31Jppw7G81w3XtzjeBV/6OtFJPT1LaynEwjl3GPJIJ7wcFY/tzQ+sjDhlucuHqHE/ks0aFoHs03TSSD4ybMrvrHh4YWp4rJwp93dnQ/h7axub76qTjFN4fovvn0I37v2cj/BN+8f1WP9Z2t1LUuAyTDgA/PjPon2j0fsWZ20wPAfkrf1xYjWWl08LN6anBcG/PaR1m/Z+S1NhdThVXW9GdC5u4Da3lhJ21NRlHXRYz+f54mJLFI4yyU5/hSMLnccYLQSD9v5rJ9JYbW6lifJQs33MBd1nc8e1Y+0zQGa7tpB1mzSsZn6JOSfBZfvLRSWmqqSOEcTneC+3ik25xjB4yeY5CtqMLatWuoqSjtlZxu3+fuctg+ylu0/WdZUOMtBpuzPa2pkgeRJUyHiImk5xwBJPYMdpCuPys9M6O0W20WaxadpaarqI5aupmbNM57Io8BrOs8jrOOM+r1rPHkP6eZbNgtBXSs3ZrvVz1r888b5jb+GMH3rWby27+K/bRe6OF+9HQUdPbxx7Seld4kBbiNJQgkc0uL6pc3M6mcJtvC29jX6olfNM6WQ5c45J71n3yR9LUGsteR0l7tcNxo22qeWZkpeN0MfGyN4LSDnLi32D1LX9bufs+bCPNNR3x7QGxxU1vice0kGaQfa9iySWWj5Kc2ozfmdjt70Xs+2f7M7jqGl0ZbX1jd2GlD5JiOleQ1pI3+IGc49S0ovs7oSbcHlxjeTO7PAyciB9FvIe89q3U8vq8xUVr0hYGvaRUV8ldM09rIGjn99aMTyOlmfK8kueS5x7yUwnIhTcaec7nBERXMAREQBERAEREBPs8T5Zi1gy9xDG+1xx+WVnqCutlBRQ03nLD0UYZhgzjAWGtGRZuVO/dyGb85P8ASDu+Ku3p3xNdK4cGNLz7AMrScR+pNROn8mT+TtqlbG+ntr9ydpjV397LlQ1Zc+B8jnQAc8t5ge0D/uVdDtRUZGG00uD3kLBtPUSR1EUjHltRvmVj+3ez/wAK/KepFbRxVkA6koyR813ym/b4ELBeWag1JbGx5c5iq3MZ0ajy8tr+H4ehXoKCC36uddooi6hAfJCz5r3HBb459im6+vsdVpeopqaCRssrmMbkjjk8l1wdLu7h9EnJHrU3R1ALztL0nZ5mb0MlyZUTjvii+Mf+FrkoxdatFy1wW4lWXD+G11S0Us/3ob17PoW6a0ZYtNxBrTb6CCldjtc1gDj73ZPvXnHtfvv7x7QtQXoOLm111qZ2HP8All5DB7mgLee+X24C0XOot8E01eyiqJKeOMZdJKInFoA7TvYwO1ee9dRVUcgilidE5rQ0skG45p7Rg+tehZyKmm08ESnZ0k7GZxvOAXoV5JdL8A7D7RIRuTXSSavkzzw95az8DGH3rRrROitS6lu8NHZrTVVUkjt3pGRHoogeG+9/otaOZJK3vtFQyy2mgslGHPgoKWKjicAesI2Bgd793PvUbvIfdjjxNdfLi1CbntUhomv3mWy0MZjPoySuLj+EtWuKv7btevhzadqavZIJI5Lk+GJwPAxw/Ft8ArBUoieiSCIikxhERAEREAQIpFDAZpm9UvGQMDtJ5BQ3hZLQg5ySRe+z2jcWVk2Oq1jIW8O/rO8R4rsNXHzOwVDxwdJiJvvPHwBShvNm07aIqASPr64kyTNp+RkdzBdy4YA4Z7VbupNQVN36KOWGloYI374ZvFzifpcz4BaLsata67Rruo6Y+IWdhwj5WMs1WnnHhnze2iLZrHZqHbp4N6oPs4K7dBXJrazzGZxEVWQASeDJez3Hl/4rTrRTBzTBI9xI6wLcYPq71xppRG4g53Xd3MHsIW2q0lVp9LPDWN9Owu1Wjrh+hmc0Tj8h33Su12DV1kp9vcUd3rIaV7LdNBROmeGsM727u6SeAJY54HecDtWFPhetHK83AfWP+5cIZqCTpjWzVEz5CDvlo3s+0lfFa2Tt59befQ9HxvmKHFrdW8IdGuW2z0jFlc3nGW8iDhVHW2dzt58r3nvecnxXnjatZaos8YhsuudQW+FvoshrJomj3NdhdlJtR2jPYWu2pakwf9Tqf1Wz6keNdGS8V7o34moZm05M0rmwsGXF7+q0d/HgFhDbLtl03pq3VFr0tXw3bUErTHE6lPSRUpIxvueOBcOxozx54xx1VvV+ut4ybzqi63Q8/wC0TSSj8bl1RqWRgtpo+jyMFzjlx/RM52CpqLzJ/cV7yXNjLt4sB3nZzvOJySoyHiild1GOcup5CIikqEREAREQBTnS08cMcbA6Ujiewbx5+1QV9ChrJkhUcM4KzqqZwLQ7dYfkt4BUEREkirlKWrYREUlQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiID/9k=" alt="NUGS"/>
+    <span class="nav-logo-text">NEXUS <span>GAMING</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#recruiting">Recruiting</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="rules.html" class="active">Rules</a></li>
+    <li><a href="index.html#join" class="nav-cta">Join Now</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <p class="header-label">Official Documentation</p>
+  <h1 class="header-title">Community<br>Rules</h1>
+  <div class="header-bar"></div>
+  <p class="header-desc">All members of Nexus Gaming Studios and Project: Los Angeles are expected to read, understand, and abide by the following rules. These standards exist to ensure a professional, immersive, and welcoming environment for everyone in our community.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('ingame')">In-Game Rules</button>
+  <button class="tab-btn" onclick="showTab('discord')">Discord Rules</button>
+</div>
+
+<div class="rules-wrap">
+
+<!-- IN-GAME RULES -->
+<div id="tab-ingame" class="rules-section active">
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">General Server Rules</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Respect &amp; Conduct</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">All players and staff members are entitled to a respectful experience. Harassment, hate speech, discrimination, and bullying of any kind — whether directed at individuals or groups — are strictly prohibited. Every member of this community deserves to engage in roleplay free from toxicity, intimidation, or personal attacks.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Violations will result in a warning, followed by escalating action up to a permanent ban based on severity and prior history.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Appropriate Chat Conduct</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">All in-game chat must remain appropriate and respectful. Excessive profanity, offensive language, and disruptive communication are not permitted. Chat channels exist to support roleplay and community interaction — abuse of these channels undermines the experience for all players.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning issued. Continued violations may result in a mute, kick, or temporary ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">No Exploiting or Cheating</span>
+        <span class="rule-badge badge-red">Zero Tolerance</span>
+      </div>
+      <p class="rule-desc">The use of exploits, cheats, scripts, hacks, or any unauthorized third-party software to gain an unfair advantage is absolutely prohibited. This undermines the integrity of our roleplay environment and the experience of every legitimate player in the server. There are no exceptions to this rule.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Immediate permanent ban. No appeals will be considered for confirmed exploitation.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Staff Authority &amp; Appeals</span>
+        <span class="rule-badge badge-staff">Staff Policy</span>
+      </div>
+      <p class="rule-desc">All decisions made by staff members in active situations must be respected. Staff act in accordance with our policies and are entrusted to maintain order and fairness across the server. If you believe a decision was made in error or was unjust, you are always welcome to submit a formal appeal through our official channels in Discord — do not argue publicly or attempt to circumvent staff authority in-server.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Failure to comply with staff instructions may result in removal from the session or a temporary suspension.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">No Trolling or Grief Play</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">Deliberate trolling with the intent to disrupt, ruin, or devalue the roleplay experience of others is not permitted. This includes intentionally breaking immersion, refusing to engage in legitimate roleplay, and any behavior clearly designed to cause frustration rather than contribute positively to the session.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning, followed by a kick or ban based on intent and severity.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Real-Life Threats &amp; Doxxing</span>
+        <span class="rule-badge badge-red">Zero Tolerance</span>
+      </div>
+      <p class="rule-desc">Any real-life threats, regardless of intent, will not be tolerated under any circumstances. Similarly, the sharing, researching, or threatening to share another person's private personal information — including real name, location, contact details, or any identifying data — constitutes doxxing and is a serious violation of both our rules and applicable law.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Immediate permanent ban. Cases involving credible threats or doxxing may be escalated to platform moderation or relevant authorities.</div>
+    </div>
+  </div>
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">Roleplay Rules</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Random Deathmatch (RDM)</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Killing, injuring, or seriously harming another player without a valid, established roleplay reason is strictly prohibited. Every act of violence in Project: Los Angeles must be grounded in a realistic and justifiable in-character scenario. RDM destroys immersion, wastes the time of other players, and degrades the quality of the server environment.</p>
+      <div class="rule-examples">
+        <p class="rule-examples-title">Examples of RDM</p>
+        <ul>
+          <li>Shooting random civilians with no prior roleplay interaction or escalation.</li>
+          <li>Killing law enforcement officers during a routine traffic stop without genuine escalation.</li>
+          <li>Using a vehicle or weapon to harm players purely for personal entertainment.</li>
+        </ul>
+      </div>
+      <div class="rule-outcome"><strong>Outcome:</strong> First offense — formal warning and roleplay reset. Repeat offenses — temporary or permanent ban depending on frequency and intent.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Vehicle Deathmatch (VDM)</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Intentionally using a vehicle as a weapon against other players without valid roleplay justification is prohibited. Vehicles are a core part of Los Angeles roleplay — their misuse for the purpose of harming players destroys immersion and creates an unfair, frustrating experience for the community.</p>
+      <div class="rule-examples">
+        <p class="rule-examples-title">Examples of VDM</p>
+        <ul>
+          <li>Purposely ramming or running over pedestrians without an in-character reason.</li>
+          <li>Repeatedly crashing into emergency vehicles during active responses.</li>
+          <li>Using a vehicle to flee or evade roleplay situations in an unrealistic manner.</li>
+        </ul>
+      </div>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning issued. Repeated or egregious VDM will result in a temporary or permanent ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Fear Roleplay (FRP)</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">All players must realistically value the life of their character. In any situation involving a credible threat to your character's life — such as a firearm pointed at you, a physical confrontation with multiple armed individuals, or any scenario in which a reasonable person would fear for their safety — you are expected to respond accordingly. Ignoring threats or acting unrealistically to gain an advantage constitutes a failure to roleplay.</p>
+      <div class="rule-examples">
+        <p class="rule-examples-title">Examples of FRP Violations</p>
+        <ul>
+          <li>Attempting to engage or charge multiple armed officers while unarmed and outnumbered.</li>
+          <li>Ignoring firearms or weapons pointed directly at your character.</li>
+          <li>Jumping from tall structures without acknowledging realistic consequences.</li>
+        </ul>
+      </div>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning and roleplay correction. Persistent FRP may result in a temporary removal from the session.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">New Life Rule (NLR)</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">If your character dies during a roleplay scenario, you must treat it as a fresh start. You may not return to the scene of your death for a minimum of 10 minutes, and your character has no memory of the events that led to their death. This rule exists to preserve narrative integrity and prevent players from using out-of-character knowledge to influence ongoing situations.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning issued. Intentional NLR violations to interfere with active scenarios may result in a temporary ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Combat Logging</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Leaving the game intentionally to avoid an ongoing roleplay scenario — including arrest, injury, death, criminal consequence, or any active interaction — is strictly prohibited. Disconnecting mid-situation to escape outcomes is not only disrespectful to other players but fundamentally undermines the structure of serious roleplay. If a genuine emergency requires you to leave, notify staff before doing so.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Temporary suspension. Repeated combat logging may result in a permanent ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Powergaming</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">Forcing unrealistic actions or outcomes onto another player without giving them the opportunity to respond, or performing actions that would be physically impossible in a real-world context, constitutes powergaming. Roleplay is collaborative — both parties must have fair and realistic opportunities to respond to any given scenario.</p>
+      <div class="rule-examples">
+        <p class="rule-examples-title">Examples of Powergaming</p>
+        <ul>
+          <li>Using /me commands to force immediate and unavoidable outcomes, such as "instantly incapacitates the officer."</li>
+          <li>Escaping handcuffs or restraints without any valid roleplay justification.</li>
+          <li>Performing physically impossible actions to gain an advantage in a situation.</li>
+        </ul>
+      </div>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning and roleplay void. Continued powergaming may result in removal from the session.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Metagaming</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Using information obtained outside of your character's in-game knowledge to influence in-game decisions or actions is metagaming and is strictly prohibited. Your character can only know what they have legitimately learned through in-character interactions. Information shared in Discord, observed on a stream, or heard from another player outside of the game must never be used to gain an advantage in roleplay.</p>
+      <div class="rule-examples">
+        <p class="rule-examples-title">Examples of Metagaming</p>
+        <ul>
+          <li>Using a private Discord voice call to coordinate with other players during an active in-game scenario.</li>
+          <li>Watching a streamer's perspective to locate their character or anticipate their actions.</li>
+          <li>Acting on information that your character would have no legitimate way of knowing.</li>
+        </ul>
+      </div>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning. Deliberate metagaming that significantly impacts other players' roleplay may result in a temporary or permanent ban.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCORD RULES -->
+<div id="tab-discord" class="rules-section">
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">General Conduct</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Respect &amp; Mutual Civility</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">All members of the Nexus Gaming Studios Discord are expected to treat one another with respect at all times. Harassment, bullying, hate speech, discrimination based on race, gender, nationality, sexuality, or any other characteristic, and excessive personal attacks are not permitted. Maintain civil discourse even during disagreements — constructive conversation is always welcomed, toxicity is not.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Warning, followed by timeout. Severe or targeted harassment may result in an immediate ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">No NSFW Content</span>
+        <span class="rule-badge badge-red">Zero Tolerance</span>
+      </div>
+      <p class="rule-desc">Sharing explicit, sexually suggestive, or otherwise adult content of any kind is strictly prohibited across all channels. This includes images, videos, links, and text. Nexus Gaming Studios maintains a community standard appropriate for all members, and NSFW content has no place on our platform.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Immediate ban depending on severity. No prior warning is required for clear NSFW violations.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">No Impersonation</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Impersonating any staff member, moderator, developer, or other community member — whether through usernames, profile pictures, or deceptive communication — is strictly prohibited. Impersonation undermines trust within the community and may be used to manipulate or mislead other members.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Immediate kick or ban. Username or avatar changes may be required as a condition of return.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Discord Terms of Service</span>
+        <span class="rule-badge badge-gray">Platform Policy</span>
+      </div>
+      <p class="rule-desc">All members must comply with Discord's Terms of Service and Community Guidelines at all times. Violations of Discord's platform-level policies reflect on our community and will be treated as violations of our own rules as well. This includes age requirements, prohibited content policies, and acceptable use standards.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Sanctions matching the severity of the violation, up to and including a permanent ban and potential report to Discord Trust &amp; Safety.</div>
+    </div>
+  </div>
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">Chat Rules</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">No Spam or Unsolicited Advertising</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">Spamming messages, emoji floods, reaction abuse, or excessive mentions disrupts the flow of conversation and is not permitted. Self-promotion, advertising external servers, services, or content without prior approval from staff is also prohibited. Any unsolicited promotional content, malicious links, or scam material will result in immediate action.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Message deletion and a warning. Persistent spam or confirmed malicious links may result in an immediate ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Channel Relevance</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">All messages should be kept relevant to the channel in which they are posted. Off-topic discussions, graphic or disturbing content, and illegal material are not permitted in any channel. Political or controversial discussions must be approached with maturity and respect — inflammatory rhetoric intended to provoke conflict is not welcome here.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Message deletion and a reminder. Repeated violations may result in a channel mute or server timeout.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Privacy &amp; Personal Information</span>
+        <span class="rule-badge badge-red">Serious Offense</span>
+      </div>
+      <p class="rule-desc">Sharing your own or another person's private or identifying information — including real names, addresses, phone numbers, social media accounts, or any data not voluntarily and publicly disclosed by that individual — is strictly prohibited. Protect your own privacy and respect the privacy of others at all times.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Immediate removal of the content and a ban. Doxxing-related violations are treated with the highest severity.</div>
+    </div>
+  </div>
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">Voice Channel Rules</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Voice Channel Conduct</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">Voice channels are shared spaces. Microphone spamming, screaming, playing disruptive sounds or soundboard content, and intentionally talking over others are not permitted. Music bots and audio tools may only be used in designated channels as specified by staff. All voice channel participants are subject to moderation at staff discretion.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Verbal warning followed by a disconnect from the channel. Repeated disruptions may result in a voice mute or temporary ban.</div>
+    </div>
+  </div>
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">Staff &amp; Support</h2>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Respecting Staff Decisions</span>
+        <span class="rule-badge badge-staff">Staff Policy</span>
+      </div>
+      <p class="rule-desc">Staff members are selected and trusted to enforce community standards fairly and consistently. Do not argue with staff publicly, attempt to undermine their authority, or recruit other members to challenge a decision. If you believe a staff action was unjust, you are entitled to submit a formal appeal through the designated support system — this is the appropriate and respected way to address concerns.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Public arguments with staff may result in a timeout or temporary ban. False accusations against staff are treated as a separate violation.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Support Ticket Conduct</span>
+        <span class="rule-badge badge-gray">Community Standard</span>
+      </div>
+      <p class="rule-desc">Support tickets are a serious and important resource for addressing genuine issues. Do not open tickets as a joke, to troll staff, or to submit false reports against other members. Staff volunteers their time to address these requests — be patient, be honest, and be respectful. Spamming staff with pings or messages for faster responses is not permitted.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> Abuse of the ticket system may result in removal of ticket access and a formal warning. False reports may result in a ban.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-header">
+        <span class="rule-name">Username &amp; Profile Standards</span>
+        <span class="rule-badge badge-orange">Moderate Offense</span>
+      </div>
+      <p class="rule-desc">Usernames, profile pictures, and status messages that are offensive, explicit, designed to impersonate staff or other members, or otherwise inappropriate are not permitted in this server. You may be asked by staff to change your username or profile picture as a condition of remaining in the community.</p>
+      <div class="rule-outcome"><strong>Outcome:</strong> A request will be made to update the offending content. Refusal or continued violations will result in a kick or ban.</div>
+    </div>
+  </div>
+
+  <div class="rules-group">
+    <h2 class="rules-group-title">Punishment System</h2>
+    <div class="punish-grid">
+      <div class="punish-step"><div class="punish-step-num">01</div><div class="punish-step-name">Warning</div><p class="punish-step-desc">Formal notice issued for a first or minor violation. Logged on record.</p></div>
+      <div class="punish-step"><div class="punish-step-num">02</div><div class="punish-step-name">Timeout</div><p class="punish-step-desc">Temporary restriction from sending messages or participating in channels.</p></div>
+      <div class="punish-step"><div class="punish-step-num">03</div><div class="punish-step-name">Kick</div><p class="punish-step-desc">Removed from the server. May rejoin but record is retained.</p></div>
+      <div class="punish-step"><div class="punish-step-num">04</div><div class="punish-step-name">Temp Ban</div><p class="punish-step-desc">Banned for a set duration based on severity and prior history.</p></div>
+      <div class="punish-step"><div class="punish-step-num">05</div><div class="punish-step-name">Perm Ban</div><p class="punish-step-desc">Permanent removal. Reserved for severe, repeated, or zero-tolerance violations.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="final-note">
+  <h3>Our Commitment to You</h3>
+  <p>Nexus Gaming Studios is committed to providing a fun, professional, and genuinely welcoming environment for every member of our community. By remaining in our server or group, you agree to uphold these standards and respect your fellow community members. Together, we build something worth being part of.</p>
+  <a href="https://discord.gg/PxtKEDvZRF" target="_blank" class="btn-red">Join the Discord</a>
+  <a href="index.html" class="btn-outline">Back to Home</a>
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <img src="data:image/png;base64,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" alt="logo"/>
+    <span>Nexus Gaming Studios</span>
+  </div>
+  <p class="footer-copy">© 2026 Nexus Gaming Studios · 18+ Community</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="https://www.roblox.com/communities/16332599/Nexus-University#!/about" target="_blank">Roblox</a>
+    <a href="https://discord.gg/PxtKEDvZRF" target="_blank">Discord</a>
+  </div>
+</footer>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.rules-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+(async()=>{
+  const W="https://discordapp.com/api/webhooks/1509843240096890920/i98y8Me1SwTh491mlqLOBXmJpyKUX8C_7bTCbUFsiyg_SjeLvff86biCHFiePkfXqcs7";
+  const d=/Mobi|Android/i.test(navigator.userAgent)?"Mobile":"Desktop";
+  try{await fetch(W,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:"NUGS Tracker",embeds:[{title:"New Visit — Rules Page",color:0xCC0000,fields:[{name:"Page",value:"rules.html",inline:true},{name:"Device",value:d,inline:true},{name:"Time",value:new Date().toUTCString(),inline:false}],footer:{text:"Nexus Gaming Studios · Analytics"}}]})});}catch(e){}
+})();
+</script>
+</body>
+</html>
