@@ -1,879 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus University Gaming Studios</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexus Gaming Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --gold: #D4A843;
-      --gold-dark: #A07820;
-      --gold-light: #F0C96A;
-      --red: #C0392B;
-      --bg: #0A0A0C;
-      --bg2: #111116;
-      --bg3: #18181F;
-      --text: #F0EDE6;
-      --muted: #888077;
-      --border: rgba(212,168,67,0.15);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Barlow', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE TEXTURE ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(10,10,12,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold) !important;
-      padding: 0.45rem 1.2rem;
-      border-radius: 2px;
-      transition: background 0.2s, color 0.2s !important;
-    }
-    .nav-cta:hover {
-      background: var(--gold) !important;
-      color: var(--bg) !important;
-    }
-
-    /* ── HERO ── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 2rem;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(212,168,67,0.08) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.5;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 9vw, 8.5rem);
-      line-height: 0.9;
-      letter-spacing: 0.03em;
-      color: var(--text);
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-title span {
-      display: block;
-      color: var(--gold);
-      font-size: clamp(2rem, 4.5vw, 4.5rem);
-      letter-spacing: 0.2em;
-    }
-
-    .hero-sub {
-      margin-top: 1.8rem;
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-      font-style: italic;
-    }
-
-    .hero-sub em {
-      color: var(--gold-light);
-      font-style: normal;
-    }
-
-    .hero-buttons {
-      margin-top: 2.8rem;
-      display: flex;
-      gap: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--bg);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.85rem 2.2rem;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-      display: inline-block;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 500;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.85rem 2.2rem;
-      border: 1px solid rgba(240,237,230,0.2);
-      border-radius: 2px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-      display: inline-block;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .hero-badge {
-      margin-top: 3.5rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(212,168,67,0.07);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.4rem 1rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #4ade80;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 4vw, 3.8rem);
-      letter-spacing: 0.04em;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .section-divider {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 2rem;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      border-top: 1px solid var(--border);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      margin-top: 3rem;
-    }
-
-    .about-body {
-      font-size: 1.05rem;
-      color: rgba(240,237,230,0.75);
-      line-height: 1.85;
-    }
-
-    .about-body p + p { margin-top: 1.2rem; }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.5rem;
-    }
-
-    .stat-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: 0.04em;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    /* ── PROJECT CARD ── */
-    #projects {
-      border-top: 1px solid var(--border);
-    }
-
-    .project-card {
-      margin-top: 3rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .project-visual {
-      background: var(--bg2);
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .project-visual-inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .city-graphic {
-      width: 260px;
-      opacity: 0.9;
-    }
-
-    .project-visual-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 50% 80%, rgba(212,168,67,0.12) 0%, transparent 70%),
-        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(212,168,67,0.04) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(212,168,67,0.04) 40px);
-    }
-
-    .project-info {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .project-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(212,168,67,0.1);
-      border: 1px solid rgba(212,168,67,0.2);
-      border-radius: 2px;
-      padding: 0.3rem 0.8rem;
-      margin-bottom: 1.5rem;
-      width: fit-content;
-    }
-
-    .project-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .project-subtitle {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      margin-bottom: 1.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.95rem;
-      color: rgba(240,237,230,0.65);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .project-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
-    .project-features li {
-      font-size: 0.85rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    .project-features li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border: 1px solid var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    /* ── RULES / AGE GATE ── */
-    #community {
-      border-top: 1px solid var(--border);
-    }
-
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .rule-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2rem 1.5rem;
-    }
-
-    .rule-icon {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.8rem;
-    }
-
-    .rule-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-    }
-
-    .rule-text {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .age-banner {
-      margin-top: 3rem;
-      background: rgba(192,57,43,0.08);
-      border: 1px solid rgba(192,57,43,0.25);
-      border-radius: 4px;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .age-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
-      color: var(--red);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .age-text strong {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(192,57,43,0.9);
-      margin-bottom: 0.2rem;
-    }
-
-    .age-text p {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    /* ── JOIN ── */
-    #join {
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .join-inner {
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    .join-inner .section-divider {
-      margin: 1rem auto 2rem;
-    }
-
-    .join-desc {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-
-    .join-link {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 1rem 3rem;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-    }
-
-    .join-link:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-    }
-
-    .footer-copy {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── FADE IN ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .project-card { grid-template-columns: 1fr; }
-      .project-visual { min-height: 240px; }
-      .rules-grid { grid-template-columns: 1fr; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--red:#CC0000;--red2:#FF2222;--red3:#8B0000;--black:#080808;--black2:#111111;--black3:#1A1A1A;--white:#F5F5F5;--w2:rgba(245,245,245,0.75);--w3:rgba(245,245,245,0.35);--border:rgba(204,0,0,0.2);}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--black2);}::-webkit-scrollbar-thumb{background:var(--red3);border-radius:3px;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:68px;background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-logo{display:flex;align-items:center;gap:0.8rem;text-decoration:none;}
+    .nav-logo img{width:42px;height:42px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
+    .nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.1em;color:var(--white);}
+    .nav-logo-text span{color:var(--red);}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--w3);text-decoration:none;font-size:0.76rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.45rem 1.3rem;border-radius:2px;}
+    .nav-cta:hover{background:var(--red2)!important;}
+    #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 2rem;position:relative;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 60%,rgba(204,0,0,0.1) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(204,0,0,0.025) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(204,0,0,0.025) 60px);}
+    .hero-line{width:1px;height:70px;background:linear-gradient(transparent,var(--red));margin:0 auto 1.8rem;}
+    .hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:1.2rem;}
+    .hero-logo-wrap{margin-bottom:1.5rem;position:relative;z-index:1;}
+    .hero-logo-wrap img{width:100px;height:100px;border-radius:10px;border:2px solid rgba(204,0,0,0.4);}
+    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7.5rem);line-height:0.92;letter-spacing:0.04em;position:relative;z-index:1;margin-bottom:0.5rem;}
+    .hero-title .accent{color:var(--red);display:block;}
+    .hero-sub{font-size:1rem;font-weight:300;font-style:italic;color:var(--w3);max-width:460px;margin:1.2rem auto 2.5rem;position:relative;z-index:1;}
+    .hero-sub em{color:var(--w2);font-style:normal;font-weight:400;}
+    .hero-buttons{display:flex;gap:1rem;justify-content:center;position:relative;z-index:1;flex-wrap:wrap;}
+    .btn-red{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2.2rem;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.1s;}
+    .btn-red:hover{background:var(--red2);transform:translateY(-2px);}
+    .btn-outline{background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2.2rem;border:1px solid rgba(245,245,245,0.22);border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s;}
+    .btn-outline:hover{border-color:var(--red);color:var(--red);}
+    .hero-status{margin-top:2.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(204,0,0,0.07);border:1px solid var(--border);border-radius:100px;padding:0.4rem 1.1rem;font-size:0.7rem;letter-spacing:0.12em;color:var(--w3);position:relative;z-index:1;}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--red2);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
+    .section-wrap{border-top:1px solid var(--border);position:relative;z-index:1;}
+    section{max-width:1200px;margin:0 auto;padding:5.5rem 4rem;}
+    .section-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);letter-spacing:0.04em;line-height:1;color:var(--white);margin-bottom:0.8rem;}
+    .section-bar{width:44px;height:3px;background:var(--red);margin-bottom:2.5rem;}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .about-body{font-size:1rem;color:var(--w2);line-height:1.9;}
+    .about-body p+p{margin-top:1rem;}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .stat-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:1.5rem;}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--red);line-height:1;letter-spacing:0.04em;}
+    .stat-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--w3);margin-top:0.3rem;}
+    .recruit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .recruit-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:2rem;position:relative;overflow:hidden;transition:border-color 0.2s;}
+    .recruit-card:hover{border-color:var(--red);}
+    .recruit-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red);}
+    .recruit-type{font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;}
+    .recruit-title{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem;}
+    .recruit-desc{font-size:0.9rem;color:var(--w2);line-height:1.8;margin-bottom:1.5rem;}
+    .recruit-perks{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.8rem;}
+    .recruit-perks li{font-size:0.85rem;color:var(--w3);display:flex;align-items:center;gap:0.7rem;}
+    .recruit-perks li::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;}
+    .project-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+    .project-visual{background:var(--black2);min-height:380px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .pv-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(204,0,0,0.12) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(204,0,0,0.035) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(204,0,0,0.035) 40px);}
+    .project-info{padding:3rem;display:flex;flex-direction:column;justify-content:center;}
+    .project-tag{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);background:rgba(204,0,0,0.1);border:1px solid rgba(204,0,0,0.25);border-radius:2px;padding:0.3rem 0.8rem;margin-bottom:1.2rem;width:fit-content;}
+    .project-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:0.04em;line-height:1;margin-bottom:0.4rem;}
+    .project-sub{font-size:0.78rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--w3);margin-bottom:1.5rem;}
+    .project-desc{font-size:0.9rem;color:var(--w2);line-height:1.8;margin-bottom:1.8rem;}
+    .project-feats{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem;}
+    .project-feats li{font-size:0.85rem;color:var(--w3);display:flex;align-items:center;gap:0.7rem;}
+    .project-feats li::before{content:'';width:5px;height:5px;border:1px solid var(--red);transform:rotate(45deg);flex-shrink:0;}
+    .community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    .comm-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:1.8rem 1.5rem;transition:border-color 0.2s;}
+    .comm-card:hover{border-color:var(--red);}
+    .comm-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1;margin-bottom:0.7rem;}
+    .comm-title{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:0.6rem;}
+    .comm-text{font-size:0.85rem;color:var(--w3);line-height:1.7;}
+    .age-bar{margin-top:1.5rem;background:rgba(204,0,0,0.07);border:1px solid rgba(204,0,0,0.25);border-radius:3px;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;}
+    .age-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--red);line-height:1;flex-shrink:0;}
+    .age-text strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(220,50,50,0.9);margin-bottom:0.2rem;}
+    .age-text p{font-size:0.85rem;color:var(--w3);}
+    #join-wrap{border-top:1px solid var(--border);}
+    #join{text-align:center;}
+    #join .section-bar{margin-left:auto;margin-right:auto;}
+    .join-desc{font-size:1rem;color:var(--w3);max-width:520px;margin:0 auto 2.5rem;line-height:1.8;}
+    .join-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    footer{border-top:1px solid var(--border);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+    .footer-logo{display:flex;align-items:center;gap:0.7rem;}
+    .footer-logo img{width:30px;height:30px;border-radius:4px;}
+    .footer-logo span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:var(--w3);}
+    .footer-copy{font-size:0.7rem;color:var(--w3);letter-spacing:0.05em;}
+    .footer-links{display:flex;gap:1.5rem;}
+    .footer-links a{font-size:0.7rem;color:var(--w3);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--red);}
+    .fade-up{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+    @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}section{padding:4rem 1.5rem;}.about-grid,.recruit-grid,.project-card{grid-template-columns:1fr;}.project-visual{min-height:220px;}.community-grid{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}.footer-links{justify-content:center;}}
   </style>
 </head>
 <body>
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="NUGS"/>
+    <span class="nav-logo-text">NEXUS <span>GAMING</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#recruiting">Recruiting</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="rules.html">Rules</a></li>
+    <li><a href="#join" class="nav-cta">Join Now</a></li>
+  </ul>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#hero" class="nav-logo">NUGS</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#community">Community</a></li>
-      <li><a href="#join" class="nav-cta">Join</a></li>
-    </ul>
-  </nav>
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <p class="hero-eyebrow">Roblox Game Development Studio</p>
+  <div class="hero-logo-wrap fade-up">
+    <img src="data:image/png;base64,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" alt="Nexus Gaming Studios"/>
+  </div>
+  <h1 class="hero-title fade-up">Nexus<br><span class="accent">Gaming</span>Studios</h1>
+  <p class="hero-sub fade-up"><em>Building a Better Tomorrow for Roleplay.</em><br>Realistic. Immersive. Community-driven.</p>
+  <div class="hero-buttons fade-up">
+    <a href="https://www.roblox.com/communities/16332599/Nexus-University#!/about" target="_blank" class="btn-red">Play on Roblox</a>
+    <a href="https://discord.gg/PxtKEDvZRF" target="_blank" class="btn-outline">Join Discord</a>
+  </div>
+  <div class="hero-status fade-up"><span class="dot"></span>Now Recruiting — Volunteer &amp; Career Positions</div>
+</div>
 
-  <!-- HERO -->
-  <div id="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-
-    <p class="hero-eyebrow">Roblox Game Development</p>
-
-    <h1 class="hero-title">
-      Nexus<br>
-      <span>University</span>
-      Studios
-    </h1>
-
-    <p class="hero-sub">
-      Building a <em>Better Tomorrow</em> for Roleplay.<br>
-      Realistic. Immersive. Community-driven.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#projects" class="btn-primary">Our Projects</a>
-      <a href="#join" class="btn-secondary">Join the Group</a>
+<div class="section-wrap"><section id="about">
+  <p class="section-label fade-up">Who We Are</p>
+  <h2 class="section-title fade-up">The Studio</h2>
+  <div class="section-bar fade-up"></div>
+  <div class="about-grid">
+    <div class="about-body fade-up">
+      <p>Nexus Gaming Studios is an independent Roblox development studio dedicated to crafting structured, immersive roleplay experiences driven by teamwork, community engagement, and an uncompromising commitment to quality.</p>
+      <p>Our flagship title, <strong style="color:#FF2222;">Project: Los Angeles</strong>, is a realistic open-world roleplay experience set in a Los Angeles-inspired environment — one of the most ambitious RP projects on the platform.</p>
+      <p>We operate as a professional studio. Every department, every staff member, and every decision is made with our community and players in mind first.</p>
     </div>
-
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Now Recruiting — Project: Los Angeles
+    <div class="about-stats fade-up">
+      <div class="stat-card"><div class="stat-num">18+</div><div class="stat-lbl">Age Requirement</div></div>
+      <div class="stat-card"><div class="stat-num">LA</div><div class="stat-lbl">Inspired Setting</div></div>
+      <div class="stat-card"><div class="stat-num">RP</div><div class="stat-lbl">Core Focus</div></div>
+      <div class="stat-card"><div class="stat-num">OW</div><div class="stat-lbl">Open World</div></div>
     </div>
   </div>
+</section></div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label fade-up">Who We Are</p>
-    <h2 class="section-title fade-up">The Studio</h2>
-    <div class="section-divider fade-up"></div>
+<div class="section-wrap"><section id="recruiting">
+  <p class="section-label fade-up">We're Hiring</p>
+  <h2 class="section-title fade-up">Now Recruiting</h2>
+  <div class="section-bar fade-up"></div>
+  <div class="recruit-grid">
+    <div class="recruit-card fade-up">
+      <p class="recruit-type">Open Positions</p>
+      <h3 class="recruit-title">Volunteer Roles</h3>
+      <p class="recruit-desc">Passionate about the community? Volunteer positions are the perfect way to get involved, build your reputation, and contribute directly to the growth of Nexus Gaming Studios and Project: Los Angeles.</p>
+      <ul class="recruit-perks">
+        <li>Community Moderator</li><li>In-Game Staff &amp; Support</li>
+        <li>Event Coordinator</li><li>Social Media &amp; Content</li>
+      </ul>
+      <a href="https://discord.gg/PxtKEDvZRF" target="_blank" class="btn-red">Apply via Discord</a>
+    </div>
+    <div class="recruit-card fade-up">
+      <p class="recruit-type">Open Positions</p>
+      <h3 class="recruit-title">Career Roles</h3>
+      <p class="recruit-desc">Ready to take on real responsibility? Career positions are for dedicated individuals who want to lead teams, shape the direction of our projects, and grow with the studio long-term.</p>
+      <ul class="recruit-perks">
+        <li>Lead Developer</li><li>Department Head</li>
+        <li>Senior Moderation Staff</li><li>Studio Management</li>
+      </ul>
+      <a href="https://discord.gg/PxtKEDvZRF" target="_blank" class="btn-red">Apply via Discord</a>
+    </div>
+  </div>
+</section></div>
 
-    <div class="about-grid">
-      <div class="about-body fade-up">
-        <p>Nexus University Gaming Studios is an independent Roblox development studio dedicated to crafting structured, immersive roleplay experiences driven by teamwork and community engagement.</p>
-        <p>We believe great roleplay comes from great infrastructure — clear departments, active moderation, and a player base that takes the world seriously. That's what we're building.</p>
-        <p>Our flagship project, <strong style="color: var(--gold-light);">Project: Los Angeles</strong>, is an open-world, Los Angeles–inspired environment pushing the limits of what Roblox roleplay can be.</p>
-      </div>
-
-      <div class="about-stats fade-up">
-        <div class="stat-card">
-          <div class="stat-number">18+</div>
-          <div class="stat-label">Age Requirement</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">LA</div>
-          <div class="stat-label">Inspired Setting</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">RP</div>
-          <div class="stat-label">Core Focus</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">OW</div>
-          <div class="stat-label">Open World</div>
-        </div>
+<div class="section-wrap"><section id="projects">
+  <p class="section-label fade-up">What We're Building</p>
+  <h2 class="section-title fade-up">Projects</h2>
+  <div class="section-bar fade-up"></div>
+  <div class="project-card fade-up">
+    <div class="project-visual">
+      <div class="pv-bg"></div>
+      <div style="position:relative;z-index:1;text-align:center;">
+        <svg viewBox="0 0 260 175" width="240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="152" width="260" height="4" fill="#CC0000" opacity="0.3"/>
+          <rect x="10" y="98" width="22" height="54" fill="#CC0000" opacity="0.1"/>
+          <rect x="14" y="88" width="14" height="64" fill="#CC0000" opacity="0.14"/>
+          <rect x="38" y="68" width="30" height="84" fill="#CC0000" opacity="0.08"/>
+          <rect x="42" y="56" width="22" height="96" fill="#CC0000" opacity="0.13"/>
+          <line x1="53" y1="56" x2="53" y2="41" stroke="#CC0000" stroke-width="1.5" opacity="0.4"/>
+          <circle cx="53" cy="40" r="2" fill="#CC0000" opacity="0.7"/>
+          <rect x="75" y="83" width="18" height="69" fill="#CC0000" opacity="0.1"/>
+          <rect x="78" y="73" width="12" height="79" fill="#CC0000" opacity="0.13"/>
+          <rect x="100" y="36" width="40" height="116" fill="#CC0000" opacity="0.08"/>
+          <rect x="105" y="16" width="30" height="136" fill="#CC0000" opacity="0.15"/>
+          <rect x="112" y="6" width="16" height="146" fill="#CC0000" opacity="0.19"/>
+          <line x1="120" y1="6" x2="120" y2="0" stroke="#CC0000" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="120" cy="0" r="2.5" fill="#FF2222" opacity="0.9"/>
+          <rect x="43" y="62" width="4" height="4" fill="#CC0000" opacity="0.45"/>
+          <rect x="50" y="62" width="4" height="4" fill="#CC0000" opacity="0.5"/>
+          <rect x="57" y="62" width="4" height="4" fill="#CC0000" opacity="0.3"/>
+          <rect x="148" y="70" width="24" height="82" fill="#CC0000" opacity="0.1"/>
+          <rect x="152" y="60" width="16" height="92" fill="#CC0000" opacity="0.13"/>
+          <rect x="180" y="86" width="28" height="66" fill="#CC0000" opacity="0.1"/>
+          <rect x="184" y="76" width="20" height="76" fill="#CC0000" opacity="0.12"/>
+          <rect x="215" y="101" width="18" height="51" fill="#CC0000" opacity="0.1"/>
+          <rect x="238" y="111" width="20" height="41" fill="#CC0000" opacity="0.09"/>
+          <rect x="0" y="156" width="260" height="19" fill="#111111"/>
+          <line x1="0" y1="166" x2="260" y2="166" stroke="#CC0000" stroke-width="1" stroke-dasharray="12 8" opacity="0.3"/>
+          <ellipse cx="130" cy="155" rx="100" ry="7" fill="#CC0000" opacity="0.06"/>
+        </svg>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:0.3em;color:rgba(204,0,0,0.45);margin-top:0.8rem;">PROJECT: LOS ANGELES</p>
       </div>
     </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-label fade-up">What We're Building</p>
-    <h2 class="section-title fade-up">Projects</h2>
-    <div class="section-divider fade-up"></div>
-
-    <div class="project-card fade-up">
-      <div class="project-visual">
-        <div class="project-visual-bg"></div>
-        <div class="project-visual-inner">
-          <!-- SVG City Skyline -->
-          <svg class="city-graphic" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Ground -->
-            <rect x="0" y="155" width="260" height="4" fill="#D4A843" opacity="0.3"/>
-            <!-- Buildings -->
-            <rect x="10" y="100" width="22" height="55" fill="#D4A843" opacity="0.12"/>
-            <rect x="14" y="90" width="14" height="65" fill="#D4A843" opacity="0.18"/>
-            <!-- windows -->
-            <rect x="15" y="93" width="3" height="3" fill="#D4A843" opacity="0.5"/>
-            <rect x="21" y="93" width="3" height="3" fill="#D4A843" opacity="0.5"/>
-            <rect x="15" y="100" width="3" height="3" fill="#D4A843" opacity="0.3"/>
-            <rect x="21" y="100" width="3" height="3" fill="#D4A843" opacity="0.5"/>
-
-            <rect x="38" y="70" width="30" height="85" fill="#D4A843" opacity="0.1"/>
-            <rect x="42" y="60" width="22" height="95" fill="#D4A843" opacity="0.15"/>
-            <!-- antenna -->
-            <line x1="53" y1="60" x2="53" y2="45" stroke="#D4A843" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="53" cy="44" r="2" fill="#D4A843" opacity="0.6"/>
-            <!-- windows -->
-            <rect x="43" y="65" width="4" height="4" fill="#D4A843" opacity="0.4"/>
-            <rect x="50" y="65" width="4" height="4" fill="#D4A843" opacity="0.4"/>
-            <rect x="57" y="65" width="4" height="4" fill="#D4A843" opacity="0.4"/>
-            <rect x="43" y="73" width="4" height="4" fill="#D4A843" opacity="0.5"/>
-            <rect x="50" y="73" width="4" height="4" fill="#D4A843" opacity="0.3"/>
-            <rect x="57" y="73" width="4" height="4" fill="#D4A843" opacity="0.5"/>
-            <rect x="43" y="81" width="4" height="4" fill="#D4A843" opacity="0.4"/>
-            <rect x="57" y="81" width="4" height="4" fill="#D4A843" opacity="0.4"/>
-
-            <rect x="75" y="85" width="18" height="70" fill="#D4A843" opacity="0.12"/>
-            <rect x="78" y="78" width="12" height="77" fill="#D4A843" opacity="0.15"/>
-
-            <!-- Center / tallest -->
-            <rect x="100" y="40" width="40" height="115" fill="#D4A843" opacity="0.1"/>
-            <rect x="105" y="20" width="30" height="135" fill="#D4A843" opacity="0.18"/>
-            <rect x="112" y="10" width="16" height="145" fill="#D4A843" opacity="0.22"/>
-            <line x1="120" y1="10" x2="120" y2="0" stroke="#D4A843" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="120" cy="0" r="2.5" fill="#C0392B" opacity="0.9"/>
-            <!-- windows -->
-            <rect x="106" y="25" width="5" height="5" fill="#D4A843" opacity="0.5"/>
-            <rect x="115" y="25" width="5" height="5" fill="#D4A843" opacity="0.5"/>
-            <rect x="124" y="25" width="5" height="5" fill="#D4A843" opacity="0.5"/>
-            <rect x="106" y="35" width="5" height="5" fill="#D4A843" opacity="0.4"/>
-            <rect x="115" y="35" width="5" height="5" fill="#D4A843" opacity="0.6"/>
-            <rect x="124" y="35" width="5" height="5" fill="#D4A843" opacity="0.4"/>
-
-            <rect x="148" y="75" width="24" height="80" fill="#D4A843" opacity="0.12"/>
-            <rect x="152" y="65" width="16" height="90" fill="#D4A843" opacity="0.15"/>
-
-            <rect x="180" y="90" width="28" height="65" fill="#D4A843" opacity="0.1"/>
-            <rect x="184" y="80" width="20" height="75" fill="#D4A843" opacity="0.15"/>
-
-            <rect x="215" y="105" width="18" height="50" fill="#D4A843" opacity="0.12"/>
-            <rect x="218" y="98" width="12" height="57" fill="#D4A843" opacity="0.15"/>
-
-            <rect x="238" y="115" width="20" height="40" fill="#D4A843" opacity="0.1"/>
-
-            <!-- Road -->
-            <rect x="0" y="159" width="260" height="20" fill="#111116"/>
-            <line x1="0" y1="169" x2="260" y2="169" stroke="#D4A843" stroke-width="1" stroke-dasharray="12 8" opacity="0.3"/>
-
-            <!-- Glow under city -->
-            <ellipse cx="130" cy="158" rx="100" ry="8" fill="#D4A843" opacity="0.06"/>
-          </svg>
-          <p style="font-family:'Bebas Neue',sans-serif; font-size:0.8rem; letter-spacing:0.3em; color:rgba(212,168,67,0.4); margin-top:1rem;">PROJECT: LOS ANGELES</p>
-        </div>
-      </div>
-
-      <div class="project-info">
-        <span class="project-tag">Flagship Project</span>
-        <h3 class="project-title">Project:<br>Los Angeles</h3>
-        <p class="project-subtitle">Open-World Roleplay · Roblox</p>
-        <p class="project-desc">
-          A realistic, open-world roleplay experience set in a Los Angeles–inspired environment. Built for a serious, structured community that values immersion above all else.
-        </p>
-        <ul class="project-features">
-          <li>Realistic LA-inspired open world</li>
-          <li>Structured departments & staff hierarchy</li>
-          <li>Active moderation & community management</li>
-          <li>Regular updates & announcements</li>
-          <li>18+ mature community environment</li>
-        </ul>
-        <a href="#join" class="btn-primary" style="width:fit-content;">Get Access →</a>
-      </div>
+    <div class="project-info">
+      <span class="project-tag">Flagship Project</span>
+      <h3 class="project-title">Project:<br>Los Angeles</h3>
+      <p class="project-sub">Open-World Roleplay · Roblox</p>
+      <p class="project-desc">A realistic open-world roleplay experience set in a Los Angeles-inspired environment. Built for a serious, structured 18+ community that values deep immersion above all else.</p>
+      <ul class="project-feats">
+        <li>Realistic LA-inspired open world</li>
+        <li>Structured departments &amp; staff hierarchy</li>
+        <li>Active moderation &amp; community management</li>
+        <li>Regular updates &amp; announcements</li>
+        <li>18+ mature community environment</li>
+      </ul>
+      <a href="https://www.roblox.com/communities/16332599/Nexus-University#!/about" target="_blank" class="btn-red" style="width:fit-content;">Play Now →</a>
     </div>
-  </section>
+  </div>
+</section></div>
 
-  <!-- COMMUNITY -->
-  <section id="community">
-    <p class="section-label fade-up">Group Features</p>
-    <h2 class="section-title fade-up">Community</h2>
-    <div class="section-divider fade-up"></div>
-
-    <div class="rules-grid">
-      <div class="rule-card fade-up">
-        <div class="rule-icon">01</div>
-        <p class="rule-title">Game Access & Updates</p>
-        <p class="rule-text">Members get direct access to Project: Los Angeles, including early information, patch notes, and exclusive announcements before they go public.</p>
-      </div>
-      <div class="rule-card fade-up">
-        <div class="rule-icon">02</div>
-        <p class="rule-title">Active Staff & Moderation</p>
-        <p class="rule-text">Our team maintains a professional, well-moderated environment. Clear rules, active enforcement, and a zero-tolerance policy for bad actors.</p>
-      </div>
-      <div class="rule-card fade-up">
-        <div class="rule-icon">03</div>
-        <p class="rule-title">Structured Departments</p>
-        <p class="rule-text">From law enforcement to civilian life, our roleplay departments are organized for maximum immersion and teamwork-driven play.</p>
-      </div>
+<div class="section-wrap"><section id="community">
+  <p class="section-label fade-up">Group Features</p>
+  <h2 class="section-title fade-up">Community</h2>
+  <div class="section-bar fade-up"></div>
+  <div class="community-grid">
+    <div class="comm-card fade-up">
+      <div class="comm-num">01</div>
+      <p class="comm-title">Game Access &amp; Updates</p>
+      <p class="comm-text">Members receive direct access to Project: Los Angeles alongside early patch notes, dev announcements, and exclusive community content.</p>
     </div>
-
-    <div class="age-banner fade-up">
-      <div class="age-number">18+</div>
-      <div class="age-text">
-        <strong>Mature Community — Age Requirement</strong>
-        <p>This is an 18+ community. All members must meet the age requirement. Failure to follow community rules or age guidelines may result in removal from the group.</p>
-      </div>
+    <div class="comm-card fade-up">
+      <div class="comm-num">02</div>
+      <p class="comm-title">Active Staff &amp; Moderation</p>
+      <p class="comm-text">Our team maintains a professional, zero-tolerance environment. Clear rules, fast enforcement, and a fair appeal system for all members.</p>
     </div>
-  </section>
-
-  <!-- JOIN -->
-  <section id="join">
-    <div class="join-inner">
-      <p class="section-label fade-up">Ready to Play?</p>
-      <h2 class="section-title fade-up">Join the Group</h2>
-      <div class="section-divider fade-up"></div>
-      <p class="join-desc fade-up">
-        Nexus University Gaming Studios is the main hub for all Project: Los Angeles community members, departments, and updates. Find us on Roblox and request to join.
-      </p>
-      <a href="https://www.roblox.com/groups" target="_blank" class="join-link fade-up">Find Us on Roblox ↗</a>
+    <div class="comm-card fade-up">
+      <div class="comm-num">03</div>
+      <p class="comm-title">Structured Departments</p>
+      <p class="comm-text">From law enforcement to civilian life — every department is organized for maximum immersion and coordinated teamwork-driven roleplay.</p>
     </div>
-  </section>
+  </div>
+  <div class="age-bar fade-up">
+    <div class="age-num">18+</div>
+    <div class="age-text">
+      <strong>Mature Community — Age Requirement Enforced</strong>
+      <p>This is a strictly 18+ community. All members must meet the age requirement. Failure to comply with community rules or age guidelines will result in removal from the group.</p>
+    </div>
+  </div>
+</section></div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Nexus University Gaming Studios</div>
-    <p class="footer-copy">© 2026 NUGS · Roblox Roleplay Development · 18+ Community</p>
-  </footer>
+<div id="join-wrap"><section id="join">
+  <p class="section-label fade-up">Ready?</p>
+  <h2 class="section-title fade-up">Join Us</h2>
+  <div class="section-bar fade-up"></div>
+  <p class="join-desc fade-up">Nexus Gaming Studios is the main hub for all Project: Los Angeles players, staff, and community members. Find us on Roblox or join our Discord to get started.</p>
+  <div class="join-buttons fade-up">
+    <a href="https://www.roblox.com/communities/16332599/Nexus-University#!/about" target="_blank" class="btn-red">Join on Roblox ↗</a>
+    <a href="https://discord.gg/PxtKEDvZRF" target="_blank" class="btn-outline">Join Discord ↗</a>
+    <a href="rules.html" class="btn-outline">Read the Rules</a>
+  </div>
+</section></div>
 
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
+<footer>
+  <div class="footer-logo">
+    <img src="data:image/png;base64,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" alt="logo"/>
+    <span>Nexus Gaming Studios</span>
+  </div>
+  <p class="footer-copy">© 2026 Nexus Gaming Studios · 18+ Community · Roblox Roleplay</p>
+  <div class="footer-links">
+    <a href="rules.html">Rules</a>
+    <a href="https://www.roblox.com/communities/16332599/Nexus-University#!/about" target="_blank">Roblox</a>
+    <a href="https://discord.gg/PxtKEDvZRF" target="_blank">Discord</a>
+  </div>
+</footer>
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
-
+<script>
+(async()=>{
+  const W="https://discordapp.com/api/webhooks/1509843240096890920/i98y8Me1SwTh491mlqLOBXmJpyKUX8C_7bTCbUFsiyg_SjeLvff86biCHFiePkfXqcs7";
+  const d=/Mobi|Android/i.test(navigator.userAgent)?"Mobile":"Desktop";
+  const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  try{await fetch(W,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:"NUGS Tracker",embeds:[{title:"New Visit — Home Page",color:0xCC0000,fields:[{name:"Page",value:"index.html",inline:true},{name:"Device",value:d,inline:true},{name:"Language",value:navigator.language,inline:true},{name:"Screen",value:window.screen.width+"x"+window.screen.height,inline:true},{name:"Timezone",value:tz,inline:true},{name:"Time",value:new Date().toUTCString(),inline:false}],footer:{text:"Nexus Gaming Studios · Analytics"}}]})});}catch(e){}
+})();
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
