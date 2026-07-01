@@ -11,8 +11,6 @@
     html{scroll-behavior:smooth;}
     body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;overflow-x:hidden;}
     ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--black2);}::-webkit-scrollbar-thumb{background:#8B0000;border-radius:3px;}
-
-    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:68px;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
     .nav-logo{display:flex;align-items:center;gap:0.8rem;text-decoration:none;}
     .nav-logo img{width:42px;height:42px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
@@ -24,15 +22,11 @@
     .nav-links a.active{color:var(--red);}
     .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.45rem 1.3rem;border-radius:2px;}
     .nav-cta:hover{background:var(--red2)!important;}
-
-    /* PAGE HEADER */
     .page-header{padding:9rem 4rem 3rem;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--border);}
     .header-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
     .header-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5rem);letter-spacing:0.04em;line-height:0.95;margin-bottom:1rem;}
     .header-bar{width:44px;height:3px;background:var(--red);margin:1rem 0;}
-    .header-desc{font-size:1rem;color:var(--w2);max-width:600px;line-height:1.8;}
-
-    /* REQUIREMENTS */
+    .header-desc{font-size:1rem;color:var(--w2);max-width:620px;line-height:1.8;}
     .req-wrap{max-width:1200px;margin:0 auto;padding:3rem 4rem 0;}
     .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
     .req-card{background:var(--black3);border:1px solid var(--border);border-radius:3px;padding:2rem;position:relative;overflow:hidden;}
@@ -44,44 +38,38 @@
     .req-list li{font-size:0.85rem;color:var(--w3);display:flex;align-items:flex-start;gap:0.8rem;line-height:1.5;}
     .req-list li::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:0.45rem;}
     .req-note{margin-top:1rem;font-size:0.78rem;color:rgba(204,0,0,0.7);font-style:italic;}
-
-    /* FORM */
-    .form-wrap{max-width:800px;margin:0 auto;padding:3rem 4rem 6rem;}
-    .form-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.5rem;}
-    .form-subtitle{font-size:0.85rem;color:var(--w3);margin-bottom:2rem;}
-    .form-group{margin-bottom:1.5rem;}
-    .form-label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--w2);margin-bottom:0.5rem;}
+    .form-outer{max-width:1200px;margin:0 auto;padding:3rem 4rem 6rem;}
+    .form-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+    .form-tab{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--w3);font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 2rem 0.85rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;margin-bottom:-1px;}
+    .form-tab:hover{color:var(--white);}
+    .form-tab.active{color:var(--red);border-bottom-color:var(--red);}
+    .form-panel{display:none;}
+    .form-panel.active{display:block;}
+    .form-section-label{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--red);margin:2rem 0 1.2rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+    .form-group{margin-bottom:1.4rem;}
+    .form-label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--w2);margin-bottom:0.5rem;}
     .form-label span{color:var(--red);}
-    .form-input, .form-select, .form-textarea{
-      width:100%;background:var(--black3);border:1px solid rgba(255,255,255,0.1);border-radius:3px;
-      color:var(--white);font-family:'Barlow',sans-serif;font-size:0.95rem;
-      padding:0.85rem 1rem;transition:border-color 0.2s;outline:none;
-    }
+    .q-num{color:var(--red);margin-right:0.3rem;}
+    .form-input,.form-select,.form-textarea{width:100%;background:var(--black3);border:1px solid rgba(255,255,255,0.1);border-radius:3px;color:var(--white);font-family:'Barlow',sans-serif;font-size:0.95rem;padding:0.85rem 1rem;transition:border-color 0.2s;outline:none;}
     .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--red);}
     .form-input::placeholder,.form-textarea::placeholder{color:var(--w3);}
     .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23CC0000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer;}
     .form-select option{background:var(--black3);}
-    .form-textarea{resize:vertical;min-height:120px;}
+    .form-textarea{resize:vertical;min-height:110px;}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
-    .form-divider{border:none;border-top:1px solid var(--border);margin:2rem 0;}
-    .form-section-label{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--red);margin-bottom:1.2rem;}
-    .char-count{font-size:0.72rem;color:var(--w3);text-align:right;margin-top:0.3rem;}
-    .form-check{display:flex;align-items:flex-start;gap:0.8rem;cursor:pointer;}
-    .form-check input{width:16px;height:16px;accent-color:var(--red);flex-shrink:0;margin-top:0.2rem;cursor:pointer;}
+    .char-count{font-size:0.7rem;color:var(--w3);text-align:right;margin-top:0.3rem;}
+    .q-hint{font-size:0.82rem;color:var(--w3);font-style:italic;margin-bottom:0.6rem;line-height:1.5;}
+    .form-check{display:flex;align-items:flex-start;gap:0.8rem;cursor:pointer;margin-bottom:1rem;}
+    .form-check input{width:16px;height:16px;accent-color:var(--red);flex-shrink:0;margin-top:0.25rem;cursor:pointer;}
     .form-check-label{font-size:0.88rem;color:var(--w2);line-height:1.6;}
-    .submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;}
-    .btn-submit{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 3rem;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s,transform 0.1s;}
+    .btn-submit{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 3rem;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s,transform 0.1s;margin-top:1.5rem;}
     .btn-submit:hover:not(:disabled){background:var(--red2);transform:translateY(-2px);}
     .btn-submit:disabled{opacity:0.5;cursor:not-allowed;}
-    .submit-note{font-size:0.8rem;color:var(--w3);line-height:1.5;}
-
-    /* SUCCESS / ERROR */
+    .submit-note{font-size:0.8rem;color:var(--w3);line-height:1.6;margin-top:0.8rem;}
     .alert{display:none;border-radius:3px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;font-size:0.9rem;line-height:1.6;}
     .alert.show{display:block;}
     .alert-success{background:rgba(0,180,80,0.1);border:1px solid rgba(0,180,80,0.3);color:rgba(100,255,150,0.9);}
     .alert-error{background:rgba(204,0,0,0.1);border:1px solid rgba(204,0,0,0.3);color:rgba(255,100,100,0.9);}
-
-    /* FOOTER */
     footer{border-top:1px solid var(--border);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;}
     .footer-logo{display:flex;align-items:center;gap:0.7rem;}
     .footer-logo img{width:30px;height:30px;border-radius:4px;}
@@ -90,18 +78,10 @@
     .footer-links{display:flex;gap:1.5rem;}
     .footer-links a{font-size:0.7rem;color:var(--w3);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;}
     .footer-links a:hover{color:var(--red);}
-
-    @media(max-width:900px){
-      nav{padding:0 1.5rem;}.nav-links{display:none;}
-      .page-header,.req-wrap,.form-wrap{padding-left:1.5rem;padding-right:1.5rem;}
-      .req-grid,.form-row{grid-template-columns:1fr;}
-      footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
-      .footer-links{justify-content:center;}
-    }
+    @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.page-header,.req-wrap,.form-outer{padding-left:1.5rem;padding-right:1.5rem;}.req-grid,.form-row{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}.footer-links{justify-content:center;}}
   </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">
     <img src="data:image/png;base64,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" alt="NUGS"/>
@@ -115,182 +95,371 @@
   </ul>
 </nav>
 
-<!-- HEADER -->
 <div class="page-header">
   <p class="header-label">Join the Team</p>
   <h1 class="header-title">Staff<br>Application</h1>
   <div class="header-bar"></div>
-  <p class="header-desc">Thank you for your interest in joining the Nexus Gaming Studios team. Please read the position requirements carefully before submitting your application. All submissions are reviewed by senior staff and you will be contacted via Discord if selected.</p>
+  <p class="header-desc">Thank you for your interest in joining the Nexus Gaming Studios team. Select your position type below, complete all required fields, and submit your application. All submissions are reviewed by senior leadership and you will be contacted via Discord if selected.</p>
 </div>
 
-<!-- REQUIREMENTS -->
 <div class="req-wrap">
   <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;">Before You Apply</p>
   <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.3rem;">Position Requirements</h2>
-  <div style="width:44px;height:3px;background:var(--red);margin-bottom:0.5rem;"></div>
-  <p style="font-size:0.88rem;color:var(--w3);">Review the requirements for your desired position type before proceeding to the application form below.</p>
-
+  <div style="width:44px;height:3px;background:var(--red);margin-bottom:0.8rem;"></div>
   <div class="req-grid">
-    <!-- CAREER -->
     <div class="req-card">
-      <p class="req-type">Paid &amp; Leadership Positions</p>
+      <p class="req-type">Leadership &amp; Executive Positions</p>
       <h3 class="req-title">Career Roles</h3>
-      <p class="req-desc">Career positions represent the backbone of Nexus Gaming Studios. These roles carry real responsibility, leadership expectations, and long-term commitment to the studio and its projects. Candidates are expected to bring maturity, professionalism, and a genuine drive to contribute at the highest level.</p>
+      <p class="req-desc">Career positions represent the highest level of commitment within Nexus Gaming Studios. These are executive and departmental leadership roles that carry significant responsibility, requiring professionalism, critical thinking, and a long-term dedication to the studio's mission and community.</p>
       <ul class="req-list">
-        <li><strong>Age:</strong>&nbsp;18 years of age or older. Exceptions may be considered on a case-by-case basis for exceptionally qualified candidates.</li>
-        <li><strong>Literacy:</strong>&nbsp;Must possess strong written communication skills including the ability to form clear paragraphs, demonstrate critical thinking, and communicate professionally.</li>
-        <li><strong>Education:</strong>&nbsp;A high school diploma or equivalent is preferred. Exceptions may be made for candidates with relevant experience or demonstrated capability.</li>
-        <li><strong>Availability:</strong>&nbsp;Must be able to commit a consistent number of hours per week and communicate proactively about availability changes.</li>
-        <li><strong>Professionalism:</strong>&nbsp;Expected to represent the studio with integrity, resolve conflicts maturely, and lead by example within the community.</li>
-        <li><strong>Experience:</strong>&nbsp;Prior experience in moderation, game development, community management, or a related field is strongly preferred.</li>
+        <li><strong>Age:</strong>&nbsp;18 years or older. Exceptions may be considered on a case-by-case basis for exceptionally qualified candidates.</li>
+        <li><strong>Literacy:</strong>&nbsp;Must demonstrate strong written communication, the ability to form clear and coherent paragraphs, and sound critical thinking skills.</li>
+        <li><strong>Education:</strong>&nbsp;A high school diploma or equivalent is preferred. Exceptions may be made for candidates with proven relevant experience.</li>
+        <li><strong>Availability:</strong>&nbsp;Must maintain consistent weekly availability and communicate any schedule changes proactively with leadership.</li>
+        <li><strong>Professionalism:</strong>&nbsp;Expected to uphold the studio's values at all times, lead by example, and represent the organization with the highest standard of integrity.</li>
+        <li><strong>Experience:</strong>&nbsp;Prior experience in leadership, management, community administration, or a related field is strongly preferred.</li>
       </ul>
-      <p class="req-note">* Exceptions to age and education requirements are reviewed individually by studio leadership.</p>
+      <p class="req-note">* Age and education exceptions are reviewed individually by studio executive leadership.</p>
     </div>
-
-    <!-- VOLUNTEER -->
     <div class="req-card">
-      <p class="req-type">Community &amp; Support Positions</p>
+      <p class="req-type">Community &amp; Moderation Positions</p>
       <h3 class="req-title">Volunteer Roles</h3>
-      <p class="req-desc">Volunteer positions are the entry point into the Nexus Gaming Studios team. These roles are ideal for passionate community members who want to contribute, grow their skills, and work toward a larger role within the studio. While the bar is more accessible, we still expect a high standard of conduct and dedication from all volunteers.</p>
+      <p class="req-desc">Volunteer positions are the foundation of our community operations. These roles are open to passionate members who are ready to take on responsibility, enforce community standards, and contribute to a professional and welcoming environment for all players.</p>
       <ul class="req-list">
-        <li><strong>Age:</strong>&nbsp;16 years of age or older. As our primary community is 18+, exceptions are made for volunteers who demonstrate exceptional maturity and responsibility.</li>
-        <li><strong>Conduct:</strong>&nbsp;Must have a clean or near-clean record within the Nexus Gaming Studios community. Prior bans or serious violations may disqualify an applicant.</li>
-        <li><strong>Commitment:</strong>&nbsp;Expected to be active, responsive, and engaged within the community on a regular basis.</li>
-        <li><strong>Communication:</strong>&nbsp;Must be able to communicate clearly and professionally with both players and staff members at all times.</li>
-        <li><strong>Attitude:</strong>&nbsp;A positive, team-first attitude is essential. Volunteers represent the studio and are held to the same conduct standards as all staff.</li>
+        <li><strong>Age:</strong>&nbsp;16 years or older. Applicants aged 16–17 must demonstrate exceptional maturity and will be reviewed individually by leadership.</li>
+        <li><strong>Conduct:</strong>&nbsp;Must maintain a clean or near-clean record within the Nexus Gaming Studios community. Prior serious violations may disqualify an applicant.</li>
+        <li><strong>Commitment:</strong>&nbsp;Expected to remain active, responsive, and consistently engaged within the community on a regular basis.</li>
+        <li><strong>Communication:</strong>&nbsp;Must communicate clearly, professionally, and respectfully with players, community members, and fellow staff at all times.</li>
+        <li><strong>Attitude:</strong>&nbsp;A team-first mentality is essential. All volunteers are held to the same conduct standards as career staff members.</li>
       </ul>
-      <p class="req-note">* Volunteers aged 16–17 will be reviewed individually to ensure suitability within our 18+ community environment.</p>
+      <p class="req-note">* Volunteers aged 16–17 are reviewed on an individual basis for suitability within our 18+ community environment.</p>
     </div>
   </div>
 </div>
 
-<!-- FORM -->
-<div class="form-wrap">
-  <hr class="form-divider"/>
-  <h2 class="form-title">Application Form</h2>
-  <p class="form-subtitle">All fields marked with an asterisk (*) are required. Incomplete applications will not be reviewed.</p>
+<div class="form-outer">
+  <div id="alert-success" class="alert alert-success"><strong>Application Submitted!</strong> Thank you for applying to Nexus Gaming Studios. Our senior staff will review your application and reach out via Discord within 3–5 business days. Please ensure your Discord DMs are open.</div>
+  <div id="alert-error" class="alert alert-error"><strong>Submission Failed.</strong> There was an issue sending your application. Please try again or reach out directly via our <a href="https://discord.gg/PxtKEDvZRF" target="_blank" style="color:inherit;">Discord server</a>.</div>
 
-  <div id="alert-success" class="alert alert-success">
-    <strong>Application Submitted!</strong> Thank you for applying to Nexus Gaming Studios. Our senior staff will review your application and reach out via Discord within 3–5 business days. Please ensure your Discord DMs are open.
-  </div>
-  <div id="alert-error" class="alert alert-error">
-    <strong>Submission Failed.</strong> There was an issue sending your application. Please try again or reach out directly via our <a href="https://discord.gg/PxtKEDvZRF" target="_blank" style="color:inherit;">Discord server</a>.
+  <div class="form-tabs">
+    <button class="form-tab active" onclick="switchTab('career',this)">Career Application</button>
+    <button class="form-tab" onclick="switchTab('volunteer',this)">Volunteer Application</button>
   </div>
 
-  <div class="form-section-label">Personal Information</div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label" for="roblox">Roblox Username <span>*</span></label>
-      <input class="form-input" type="text" id="roblox" placeholder="YourRobloxUsername" maxlength="50"/>
+  <!-- CAREER FORM -->
+  <div id="panel-career" class="form-panel active">
+    <div class="form-section-label">Personal Information</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name &amp; Last Initial <span>*</span></label>
+        <input class="form-input" id="c-name" placeholder="e.g. John D." maxlength="40"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Age Status <span>*</span></label>
+        <select class="form-select" id="c-age">
+          <option value="">Select age range...</option>
+          <option>Under 16</option>
+          <option>16–17 (Exception Required)</option>
+          <option>18–20</option>
+          <option>21–25</option>
+          <option>26–30</option>
+          <option>31–40</option>
+          <option>41+</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label" for="discord">Discord Username <span>*</span></label>
-      <input class="form-input" type="text" id="discord" placeholder="username or user#0000" maxlength="50"/>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Roblox Username <span>*</span></label>
+        <input class="form-input" id="c-roblox" placeholder="YourRobloxUsername" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Discord Username <span>*</span></label>
+        <input class="form-input" id="c-discord" placeholder="username or user#0000" maxlength="50"/>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label" for="age">Age <span>*</span></label>
-      <input class="form-input" type="number" id="age" placeholder="e.g. 21" min="13" max="99"/>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">State / Region <span>*</span></label>
+        <select class="form-select" id="c-state">
+          <option value="">Select your state...</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option><option>Outside the United States</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Education Status <span>*</span></label>
+        <select class="form-select" id="c-edu">
+          <option value="">Select education status...</option>
+          <option>Currently in High School</option>
+          <option>High School Diploma / GED</option>
+          <option>Some College</option>
+          <option>Associate Degree</option>
+          <option>Bachelor's Degree</option>
+          <option>Graduate Degree or Higher</option>
+          <option>Trade / Vocational Certification</option>
+          <option>Prefer Not to Say</option>
+        </select>
+      </div>
     </div>
+
+    <div class="form-section-label">Position Selection</div>
     <div class="form-group">
-      <label class="form-label" for="timezone">Timezone <span>*</span></label>
-      <select class="form-select" id="timezone">
-        <option value="">Select your timezone...</option>
-        <option>EST — Eastern Standard Time</option>
-        <option>CST — Central Standard Time</option>
-        <option>MST — Mountain Standard Time</option>
-        <option>PST — Pacific Standard Time</option>
-        <option>GMT — Greenwich Mean Time</option>
-        <option>CET — Central European Time</option>
-        <option>AEST — Australian Eastern Time</option>
-        <option>Other</option>
+      <label class="form-label">Career Position <span>*</span></label>
+      <select class="form-select" id="c-role">
+        <option value="">Select a position...</option>
+        <optgroup label="Executive Leadership">
+          <option>Chief Operations Officer</option>
+          <option>Chief Financial Officer</option>
+          <option>Board of Directors — Board Member</option>
+        </optgroup>
+        <optgroup label="Departmental Positions">
+          <option>Department of Standards and Ethics</option>
+          <option>Community Research and Development Division</option>
+          <option>Department of Public Relations</option>
+        </optgroup>
       </select>
     </div>
+    <div class="form-group">
+      <label class="form-label">Weekly Availability <span>*</span></label>
+      <select class="form-select" id="c-avail">
+        <option value="">Select availability...</option>
+        <option>Less than 5 hours per week</option>
+        <option>5–10 hours per week</option>
+        <option>10–20 hours per week</option>
+        <option>20+ hours per week</option>
+      </select>
+    </div>
+
+    <div class="form-section-label">Application Questions</div>
+
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q1.</span> Why do you want this career? <span>*</span></label>
+      <p class="q-hint">Tell us what draws you to this specific position and what you hope to achieve within Nexus Gaming Studios.</p>
+      <textarea class="form-textarea" id="c-q1" maxlength="800" oninput="cnt(this,'c-q1-c')"></textarea>
+      <p class="char-count" id="c-q1-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q2.</span> What relevant experience do you have? <span>*</span></label>
+      <p class="q-hint">Describe any prior experience in leadership, management, community administration, finance, operations, or any other relevant field.</p>
+      <textarea class="form-textarea" id="c-q2" maxlength="800" oninput="cnt(this,'c-q2-c')"></textarea>
+      <p class="char-count" id="c-q2-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q3.</span> What skills make you a good fit? <span>*</span></label>
+      <p class="q-hint">Highlight the specific skills, strengths, and qualities that make you uniquely suited for this position within the studio.</p>
+      <textarea class="form-textarea" id="c-q3" maxlength="800" oninput="cnt(this,'c-q3-c')"></textarea>
+      <p class="char-count" id="c-q3-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q4.</span> How do you handle stressful situations? <span>*</span></label>
+      <p class="q-hint">Describe your approach to managing pressure, conflict, or high-demand scenarios within a leadership or community environment.</p>
+      <textarea class="form-textarea" id="c-q4" maxlength="800" oninput="cnt(this,'c-q4-c')"></textarea>
+      <p class="char-count" id="c-q4-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q5.</span> Describe a time you worked well with a team. <span>*</span></label>
+      <p class="q-hint">Walk us through a specific example of successful teamwork and the role you played in achieving that outcome.</p>
+      <textarea class="form-textarea" id="c-q5" maxlength="800" oninput="cnt(this,'c-q5-c')"></textarea>
+      <p class="char-count" id="c-q5-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q6.</span> What does quality roleplay mean to you? <span>*</span></label>
+      <p class="q-hint">In your own words, describe what separates exceptional roleplay from poor roleplay and why that distinction matters to you.</p>
+      <textarea class="form-textarea" id="c-q6" maxlength="800" oninput="cnt(this,'c-q6-c')"></textarea>
+      <p class="char-count" id="c-q6-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q7.</span> How would you handle someone breaking roleplay rules? <span>*</span></label>
+      <p class="q-hint">Walk us through your step-by-step process for identifying, addressing, and resolving a roleplay violation at a leadership level.</p>
+      <textarea class="form-textarea" id="c-q7" maxlength="800" oninput="cnt(this,'c-q7-c')"></textarea>
+      <p class="char-count" id="c-q7-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q8.</span> Are you willing to complete required training? <span>*</span></label>
+      <p class="q-hint">All career staff members are required to complete a structured onboarding and training process before assuming full responsibilities. Please confirm your commitment.</p>
+      <textarea class="form-textarea" id="c-q8" maxlength="400" oninput="cnt(this,'c-q8-c')" style="min-height:80px;"></textarea>
+      <p class="char-count" id="c-q8-c">0 / 400</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q9.</span> How active do you plan to be? <span>*</span></label>
+      <p class="q-hint">Beyond your availability selection above, describe your typical schedule and how you plan to stay consistently engaged with the studio and its operations.</p>
+      <textarea class="form-textarea" id="c-q9" maxlength="500" oninput="cnt(this,'c-q9-c')" style="min-height:80px;"></textarea>
+      <p class="char-count" id="c-q9-c">0 / 500</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q10.</span> Why should we choose you for this position? <span>*</span></label>
+      <p class="q-hint">This is your closing statement. Make a compelling and professional case for why you are the right person for this career role at Nexus Gaming Studios.</p>
+      <textarea class="form-textarea" id="c-q10" maxlength="800" oninput="cnt(this,'c-q10-c')"></textarea>
+      <p class="char-count" id="c-q10-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Additional Notes</label>
+      <textarea class="form-textarea" id="c-extra" maxlength="400" oninput="cnt(this,'c-extra-c')" placeholder="Any additional information, relevant links, or anything else you'd like the review team to know..." style="min-height:80px;"></textarea>
+      <p class="char-count" id="c-extra-c">0 / 400</p>
+    </div>
+
+    <div class="form-section-label">Acknowledgements</div>
+    <label class="form-check"><input type="checkbox" id="c-chk1"/><span class="form-check-label">I have read and fully agree to the <a href="rules.html" target="_blank" style="color:var(--red);">Community Rules</a> and understand that violations may result in removal from the team. <span style="color:var(--red);">*</span></span></label>
+    <label class="form-check"><input type="checkbox" id="c-chk2"/><span class="form-check-label">I confirm that all information provided in this application is accurate and truthful to the best of my knowledge. <span style="color:var(--red);">*</span></span></label>
+    <label class="form-check"><input type="checkbox" id="c-chk3"/><span class="form-check-label">I understand that submitting a false or misleading application may result in a permanent ban from the Nexus Gaming Studios community. <span style="color:var(--red);">*</span></span></label>
+
+    <button class="btn-submit" onclick="submitForm('career')">Submit Career Application</button>
+    <p class="submit-note">Applications are reviewed by senior leadership. Response time is typically 3–5 business days.<br>Please ensure your Discord DMs are open to receive a response.</p>
   </div>
 
-  <hr class="form-divider"/>
-  <div class="form-section-label">Position Details</div>
+  <!-- VOLUNTEER FORM -->
+  <div id="panel-volunteer" class="form-panel">
+    <div class="form-section-label">Personal Information</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name &amp; Last Initial <span>*</span></label>
+        <input class="form-input" id="v-name" placeholder="e.g. John D." maxlength="40"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Age Status <span>*</span></label>
+        <select class="form-select" id="v-age">
+          <option value="">Select age range...</option>
+          <option>Under 16</option>
+          <option>16–17 (Exception Required)</option>
+          <option>18–20</option>
+          <option>21–25</option>
+          <option>26–30</option>
+          <option>31–40</option>
+          <option>41+</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Roblox Username <span>*</span></label>
+        <input class="form-input" id="v-roblox" placeholder="YourRobloxUsername" maxlength="50"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Discord Username <span>*</span></label>
+        <input class="form-input" id="v-discord" placeholder="username or user#0000" maxlength="50"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">State / Region <span>*</span></label>
+        <select class="form-select" id="v-state">
+          <option value="">Select your state...</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option><option>Outside the United States</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Education Status <span>*</span></label>
+        <select class="form-select" id="v-edu">
+          <option value="">Select education status...</option>
+          <option>Currently in High School</option>
+          <option>High School Diploma / GED</option>
+          <option>Some College</option>
+          <option>Associate Degree</option>
+          <option>Bachelor's Degree</option>
+          <option>Graduate Degree or Higher</option>
+          <option>Trade / Vocational Certification</option>
+          <option>Prefer Not to Say</option>
+        </select>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label class="form-label" for="postype">Position Type <span>*</span></label>
-    <select class="form-select" id="postype" onchange="updateRoles()">
-      <option value="">Select position type...</option>
-      <option value="career">Career Position</option>
-      <option value="volunteer">Volunteer Position</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="role">Desired Role <span>*</span></label>
-    <select class="form-select" id="role">
-      <option value="">Select position type first...</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="availability">Weekly Availability <span>*</span></label>
-    <select class="form-select" id="availability">
-      <option value="">Select availability...</option>
-      <option>Less than 5 hours per week</option>
-      <option>5–10 hours per week</option>
-      <option>10–20 hours per week</option>
-      <option>20+ hours per week</option>
-    </select>
-  </div>
+    <div class="form-section-label">Position Selection</div>
+    <div class="form-group">
+      <label class="form-label">Volunteer Position <span>*</span></label>
+      <select class="form-select" id="v-role">
+        <option value="">Select a position...</option>
+        <optgroup label="Department of Member Services">
+          <option>Moderation Division — Team Lead</option>
+          <option>Moderation Division — Associate</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Weekly Availability <span>*</span></label>
+      <select class="form-select" id="v-avail">
+        <option value="">Select availability...</option>
+        <option>Less than 5 hours per week</option>
+        <option>5–10 hours per week</option>
+        <option>10–20 hours per week</option>
+        <option>20+ hours per week</option>
+      </select>
+    </div>
 
-  <hr class="form-divider"/>
-  <div class="form-section-label">Application Questions</div>
+    <div class="form-section-label">Application Questions</div>
 
-  <div class="form-group">
-    <label class="form-label" for="why">Why do you want to join Nexus Gaming Studios? <span>*</span></label>
-    <textarea class="form-textarea" id="why" placeholder="Tell us what motivates you to apply and why you'd be a great fit for the team..." maxlength="1000" oninput="updateCount('why','why-count')"></textarea>
-    <p class="char-count" id="why-count">0 / 1000</p>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="experience">Relevant Experience <span>*</span></label>
-    <textarea class="form-textarea" id="experience" placeholder="Describe any prior experience in moderation, game development, community management, roleplay, or anything else relevant to this role..." maxlength="1000" oninput="updateCount('experience','exp-count')"></textarea>
-    <p class="char-count" id="exp-count">0 / 1000</p>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="scenario">Scenario Question <span>*</span></label>
-    <p style="font-size:0.85rem;color:var(--w3);margin-bottom:0.6rem;font-style:italic;">A player is disrupting an active roleplay session and ignoring staff warnings. How would you handle the situation?</p>
-    <textarea class="form-textarea" id="scenario" placeholder="Walk us through how you would approach and resolve this situation..." maxlength="800" oninput="updateCount('scenario','scen-count')"></textarea>
-    <p class="char-count" id="scen-count">0 / 800</p>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="heardof">How did you hear about us?</label>
-    <select class="form-select" id="heardof">
-      <option value="">Select an option...</option>
-      <option>Roblox Group Page</option>
-      <option>Discord Server</option>
-      <option>Friend / Referral</option>
-      <option>Social Media</option>
-      <option>In-Game</option>
-      <option>Other</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="additional">Anything else you'd like to add?</label>
-    <textarea class="form-textarea" id="additional" placeholder="Additional information, links, or anything else you'd like the review team to know..." maxlength="500" oninput="updateCount('additional','add-count')" style="min-height:90px;"></textarea>
-    <p class="char-count" id="add-count">0 / 500</p>
-  </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q1.</span> Why do you want to become a volunteer? <span>*</span></label>
+      <p class="q-hint">Tell us what motivates you to volunteer your time and what you hope to contribute to the Nexus Gaming Studios community.</p>
+      <textarea class="form-textarea" id="v-q1" maxlength="800" oninput="cnt(this,'v-q1-c')"></textarea>
+      <p class="char-count" id="v-q1-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q2.</span> What moderation or leadership experience do you have? <span>*</span></label>
+      <p class="q-hint">Describe any prior experience moderating Discord servers, managing Roblox groups, leading teams, or any similar community roles.</p>
+      <textarea class="form-textarea" id="v-q2" maxlength="800" oninput="cnt(this,'v-q2-c')"></textarea>
+      <p class="char-count" id="v-q2-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q3.</span> How would you handle a disrespectful player? <span>*</span></label>
+      <p class="q-hint">Walk us through your step-by-step approach to identifying, de-escalating, and resolving a situation involving a disrespectful or toxic player.</p>
+      <textarea class="form-textarea" id="v-q3" maxlength="800" oninput="cnt(this,'v-q3-c')"></textarea>
+      <p class="char-count" id="v-q3-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q4.</span> What would you do if you saw a staff member abusing their powers? <span>*</span></label>
+      <p class="q-hint">Describe how you would respond if you witnessed a fellow staff member acting inappropriately or misusing their authority within the community.</p>
+      <textarea class="form-textarea" id="v-q4" maxlength="800" oninput="cnt(this,'v-q4-c')"></textarea>
+      <p class="char-count" id="v-q4-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q5.</span> How would you handle a friend who broke the rules? <span>*</span></label>
+      <p class="q-hint">Being a staff member means enforcing rules consistently and fairly, regardless of personal relationships. How would you approach this situation?</p>
+      <textarea class="form-textarea" id="v-q5" maxlength="800" oninput="cnt(this,'v-q5-c')"></textarea>
+      <p class="char-count" id="v-q5-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q6.</span> What would you do if you didn't know how to handle a report? <span>*</span></label>
+      <p class="q-hint">Not every situation has a clear answer. Describe how you would approach a report or scenario you were unsure how to handle on your own.</p>
+      <textarea class="form-textarea" id="v-q6" maxlength="800" oninput="cnt(this,'v-q6-c')"></textarea>
+      <p class="char-count" id="v-q6-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q7.</span> How do you respond to feedback or criticism? <span>*</span></label>
+      <p class="q-hint">Describe your attitude toward constructive criticism and give a specific example of a time you used feedback to grow or improve.</p>
+      <textarea class="form-textarea" id="v-q7" maxlength="800" oninput="cnt(this,'v-q7-c')"></textarea>
+      <p class="char-count" id="v-q7-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q8.</span> How active can you realistically be each week? <span>*</span></label>
+      <p class="q-hint">Beyond your availability selection above, describe your typical weekly schedule and how you intend to stay consistently present and engaged with the community.</p>
+      <textarea class="form-textarea" id="v-q8" maxlength="500" oninput="cnt(this,'v-q8-c')" style="min-height:80px;"></textarea>
+      <p class="char-count" id="v-q8-c">0 / 500</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q9.</span> What qualities make a good moderator? <span>*</span></label>
+      <p class="q-hint">In your own words, describe the key traits, values, and qualities that define an effective and trustworthy moderator.</p>
+      <textarea class="form-textarea" id="v-q9" maxlength="800" oninput="cnt(this,'v-q9-c')"></textarea>
+      <p class="char-count" id="v-q9-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="q-num">Q10.</span> Why should we trust you with staff permissions? <span>*</span></label>
+      <p class="q-hint">This is your closing statement. Explain why you are trustworthy, responsible, and genuinely ready to represent Nexus Gaming Studios as a staff member.</p>
+      <textarea class="form-textarea" id="v-q10" maxlength="800" oninput="cnt(this,'v-q10-c')"></textarea>
+      <p class="char-count" id="v-q10-c">0 / 800</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Additional Notes</label>
+      <textarea class="form-textarea" id="v-extra" maxlength="400" oninput="cnt(this,'v-extra-c')" placeholder="Any additional information, relevant links, or anything else you'd like the review team to know..." style="min-height:80px;"></textarea>
+      <p class="char-count" id="v-extra-c">0 / 400</p>
+    </div>
 
-  <hr class="form-divider"/>
-  <div class="form-group">
-    <label class="form-check">
-      <input type="checkbox" id="agree-rules"/>
-      <span class="form-check-label">I have read and agree to the <a href="rules.html" target="_blank" style="color:var(--red);">Community Rules</a> and understand that violations may result in removal from the team. <span style="color:var(--red);">*</span></span>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="form-check">
-      <input type="checkbox" id="agree-age"/>
-      <span class="form-check-label">I confirm that the information provided in this application is accurate and truthful to the best of my knowledge. <span style="color:var(--red);">*</span></span>
-    </label>
-  </div>
+    <div class="form-section-label">Acknowledgements</div>
+    <label class="form-check"><input type="checkbox" id="v-chk1"/><span class="form-check-label">I have read and fully agree to the <a href="rules.html" target="_blank" style="color:var(--red);">Community Rules</a> and understand that violations may result in removal from the team. <span style="color:var(--red);">*</span></span></label>
+    <label class="form-check"><input type="checkbox" id="v-chk2"/><span class="form-check-label">I confirm that all information provided in this application is accurate and truthful to the best of my knowledge. <span style="color:var(--red);">*</span></span></label>
+    <label class="form-check"><input type="checkbox" id="v-chk3"/><span class="form-check-label">I understand that submitting a false or misleading application may result in a permanent ban from the Nexus Gaming Studios community. <span style="color:var(--red);">*</span></span></label>
 
-  <div class="submit-row">
-    <button class="btn-submit" id="submit-btn" onclick="submitApplication()">Submit Application</button>
-    <p class="submit-note">Applications are reviewed by senior staff.<br>Response time is typically 3–5 business days.</p>
+    <button class="btn-submit" onclick="submitForm('volunteer')">Submit Volunteer Application</button>
+    <p class="submit-note">Applications are reviewed by senior staff. Response time is typically 3–5 business days.<br>Please ensure your Discord DMs are open to receive a response.</p>
   </div>
 </div>
 
@@ -308,99 +477,99 @@
 </footer>
 
 <script>
-const CAREER_ROLES = ["Lead Developer","Senior Developer","Department Head","Senior Moderation Staff","Studio Management","Community Director","Human Resources Lead"];
-const VOLUNTEER_ROLES = ["Community Moderator","In-Game Support Staff","Event Coordinator","Social Media & Content Creator","Recruitment Assistant","Player Relations Officer"];
+const WEBHOOK="https://discordapp.com/api/webhooks/1510014464429133887/y0N4CS2iVlpol6hOHG1OI8WHiekmymPR6J-IvERkcPHrR8Bh-g1DyNcmThhOlNS72vIC";
 
-function updateRoles() {
-  const type = document.getElementById('postype').value;
-  const roleSelect = document.getElementById('role');
-  roleSelect.innerHTML = '<option value="">Select a role...</option>';
-  const roles = type === 'career' ? CAREER_ROLES : type === 'volunteer' ? VOLUNTEER_ROLES : [];
-  roles.forEach(r => { const o = document.createElement('option'); o.value = r; o.textContent = r; roleSelect.appendChild(o); });
-  if (!roles.length) roleSelect.innerHTML = '<option value="">Select position type first...</option>';
+function switchTab(tab,btn){
+  document.querySelectorAll('.form-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+  document.getElementById('alert-success').classList.remove('show');
+  document.getElementById('alert-error').classList.remove('show');
+  window.scrollTo({top:document.querySelector('.form-tabs').offsetTop-80,behavior:'smooth'});
 }
 
-function updateCount(fieldId, countId) {
-  const el = document.getElementById(fieldId);
-  document.getElementById(countId).textContent = el.value.length + ' / ' + el.maxLength;
+function cnt(el,cid){
+  document.getElementById(cid).textContent=el.value.length+' / '+el.maxLength;
 }
 
-async function submitApplication() {
-  const get = id => document.getElementById(id)?.value?.trim() || '';
-  const roblox = get('roblox'), discord = get('discord'), age = get('age');
-  const tz = get('timezone'), postype = get('postype'), role = get('role');
-  const avail = get('availability'), why = get('why'), exp = get('experience');
-  const scenario = get('scenario'), heard = get('heardof'), extra = get('additional');
-  const agreeRules = document.getElementById('agree-rules').checked;
-  const agreeAge = document.getElementById('agree-age').checked;
+function g(id){return(document.getElementById(id)?.value||'').trim();}
 
-  if (!roblox||!discord||!age||!tz||!postype||!role||!avail||!why||!exp||!scenario) {
+async function submitForm(type){
+  const p=type==='career'?'c':'v';
+  const name=g(p+'-name'),age=g(p+'-age'),roblox=g(p+'-roblox'),discord=g(p+'-discord');
+  const state=g(p+'-state'),edu=g(p+'-edu'),role=g(p+'-role'),avail=g(p+'-avail');
+  const qs=[1,2,3,4,5,6,7,8,9,10].map(n=>g(p+'-q'+n));
+  const extra=g(p+'-extra');
+  const chk1=document.getElementById(p+'-chk1').checked;
+  const chk2=document.getElementById(p+'-chk2').checked;
+  const chk3=document.getElementById(p+'-chk3').checked;
+
+  if(!name||!age||!roblox||!discord||!state||!edu||!role||!avail||qs.some(q=>!q)){
     showAlert('error','Please fill in all required fields before submitting.'); return;
   }
-  if (!agreeRules||!agreeAge) {
-    showAlert('error','Please confirm both acknowledgement checkboxes before submitting.'); return;
+  if(!chk1||!chk2||!chk3){
+    showAlert('error','Please confirm all three acknowledgement checkboxes before submitting.'); return;
   }
 
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true; btn.textContent = 'Submitting...';
+  const btn=document.querySelector('#panel-'+type+' .btn-submit');
+  btn.disabled=true; btn.textContent='Submitting...';
 
-  const typeLabel = postype === 'career' ? '🔴 Career Position' : '🟡 Volunteer Position';
-  const color = postype === 'career' ? 0xCC0000 : 0xFFAA00;
+  const isCareer=type==='career';
+  const color=isCareer?0xCC0000:0xFFAA00;
+  const typeLabel=isCareer?'🔴 Career Position':'🟡 Volunteer Position';
 
-  const payload = {
-    username: "NUGS Applications",
-    avatar_url: "https://cdn.discordapp.com/embed/avatars/0.png",
-    embeds: [{
-      title: "📋 New Staff Application",
-      color: color,
-      fields: [
-        { name: "Roblox Username", value: roblox, inline: true },
-        { name: "Discord Username", value: discord, inline: true },
-        { name: "Age", value: age, inline: true },
-        { name: "Timezone", value: tz, inline: true },
-        { name: "Position Type", value: typeLabel, inline: true },
-        { name: "Desired Role", value: role, inline: true },
-        { name: "Weekly Availability", value: avail, inline: false },
-        { name: "Why do you want to join?", value: why.substring(0,1024), inline: false },
-        { name: "Relevant Experience", value: exp.substring(0,1024), inline: false },
-        { name: "Scenario Response", value: scenario.substring(0,1024), inline: false },
-        { name: "How they heard about us", value: heard || "Not specified", inline: true },
-        { name: "Additional Notes", value: extra || "None provided", inline: false }
+  const careerQs=['Why do you want this career?','What relevant experience do you have?','What skills make you a good fit?','How do you handle stressful situations?','Describe a time you worked well with a team.','What does quality roleplay mean to you?','How would you handle someone breaking roleplay rules?','Are you willing to complete required training?','How active do you plan to be?','Why should we choose you for this position?'];
+  const volunteerQs=['Why do you want to become a volunteer?','What moderation or leadership experience do you have?','How would you handle a disrespectful player?','What would you do if you saw a staff member abusing their powers?','How would you handle a friend who broke the rules?','What would you do if you didn\'t know how to handle a report?','How do you respond to feedback or criticism?','How active can you realistically be each week?','What qualities make a good moderator?','Why should we trust you with staff permissions?'];
+  const labels=isCareer?careerQs:volunteerQs;
+
+  const qFields=labels.map((label,i)=>({name:'Q'+(i+1)+'. '+label,value:(qs[i]||'No response').substring(0,1024),inline:false}));
+
+  const payload={
+    username:"NUGS Applications",
+    embeds:[{
+      title:"📋 New Staff Application — "+(isCareer?'Career':'Volunteer'),
+      color:color,
+      fields:[
+        {name:"Position Type",value:typeLabel,inline:true},
+        {name:"Applied Role",value:role,inline:true},
+        {name:"\u200b",value:"\u200b",inline:true},
+        {name:"Full Name",value:name,inline:true},
+        {name:"Age Status",value:age,inline:true},
+        {name:"State / Region",value:state,inline:true},
+        {name:"Roblox Username",value:roblox,inline:true},
+        {name:"Discord Username",value:discord,inline:true},
+        {name:"Education Status",value:edu,inline:true},
+        {name:"Weekly Availability",value:avail,inline:false},
+        ...qFields,
+        {name:"Additional Notes",value:extra||'None provided',inline:false}
       ],
-      footer: { text: "Nexus Gaming Studios · Staff Applications" },
-      timestamp: new Date().toISOString()
+      footer:{text:"Nexus Gaming Studios · Staff Applications"},
+      timestamp:new Date().toISOString()
     }]
   };
 
-  try {
-    const res = await fetch("https://discordapp.com/api/webhooks/1510014464429133887/y0N4CS2iVlpol6hOHG1OI8WHiekmymPR6J-IvERkcPHrR8Bh-g1DyNcmThhOlNS72vIC", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if (res.ok) {
+  try{
+    const res=await fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    if(res.ok){
       showAlert('success');
-      document.querySelectorAll('.form-input,.form-select,.form-textarea').forEach(el => el.value = '');
-      document.getElementById('agree-rules').checked = false;
-      document.getElementById('agree-age').checked = false;
-      btn.textContent = 'Submitted!';
-    } else {
-      throw new Error('Bad response');
-    }
-  } catch(e) {
+      document.querySelectorAll('#panel-'+type+' .form-input,#panel-'+type+' .form-select,#panel-'+type+' .form-textarea').forEach(el=>el.value='');
+      document.querySelectorAll('#panel-'+type+' input[type=checkbox]').forEach(el=>el.checked=false);
+      document.querySelectorAll('#panel-'+type+' .char-count').forEach(el=>{const m=el.textContent.split('/')[1]?.trim();if(m)el.textContent='0 / '+m;});
+      btn.textContent='Submitted ✓';
+    }else{throw new Error();}
+  }catch(e){
     showAlert('error');
-    btn.disabled = false;
-    btn.textContent = 'Submit Application';
+    btn.disabled=false;
+    btn.textContent=isCareer?'Submit Career Application':'Submit Volunteer Application';
   }
 }
 
-function showAlert(type, msg) {
+function showAlert(type){
   document.getElementById('alert-success').classList.remove('show');
   document.getElementById('alert-error').classList.remove('show');
-  const el = document.getElementById('alert-' + type);
-  if (msg) el.querySelector('strong').nextSibling.textContent = ' ' + msg;
-  el.classList.add('show');
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('alert-'+type).classList.add('show');
+  document.getElementById('alert-'+type).scrollIntoView({behavior:'smooth',block:'center'});
 }
 </script>
 </body>
