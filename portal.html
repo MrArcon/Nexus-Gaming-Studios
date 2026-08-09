@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Staff Portal — Nexus Gaming Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--red:#CC0000;--red2:#FF2222;--red3:#8B0000;--black:#080808;--black2:#111111;--black3:#1A1A1A;--white:#F5F5F5;--w2:rgba(245,245,245,0.75);--w3:rgba(245,245,245,0.35);--border:rgba(204,0,0,0.2);--green:#2ECC71;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh;line-height:1.7;}
+.wrap{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+header.top{max-width:760px;margin:0 auto;padding:2rem 1.5rem 0;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--white);}
+.brand img{width:34px;height:34px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
+.brand span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;}
+.brand span em{color:var(--red);font-style:normal;}
+.back{font-size:0.72rem;color:var(--w3);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;}
+.back:hover{color:var(--red);}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.2rem);letter-spacing:0.03em;line-height:1;margin-bottom:0.8rem;}
+.lead{color:var(--w2);font-size:0.95rem;max-width:520px;margin-bottom:2rem;}
+.card{background:var(--black3);border:1px solid var(--border);border-radius:4px;padding:2.2rem;}
+label{display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--w3);margin-bottom:0.5rem;}
+input[type=text],input[type=password]{width:100%;background:var(--black2);border:1px solid var(--border);color:var(--white);font-family:'Barlow',sans-serif;font-size:0.95rem;padding:0.85rem 1rem;border-radius:3px;outline:none;transition:border-color .2s;}
+input[type=text]:focus,input[type=password]:focus{border-color:var(--red);}
+.field{margin-bottom:1.4rem;}
+.btn{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.16em;text-transform:uppercase;padding:0.85rem 1.8rem;border:none;border-radius:3px;cursor:pointer;transition:background .2s;}
+.btn:hover{background:var(--red2);}
+.btn:disabled{background:var(--black2);color:var(--w3);cursor:not-allowed;}
+.btn-outline{background:transparent;border:1px solid rgba(245,245,245,0.22);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.8rem 1.6rem;border-radius:3px;cursor:pointer;}
+.btn-outline:hover{border-color:var(--red);color:var(--red);}
+.error{color:var(--red2);font-size:0.82rem;margin-top:0.8rem;display:none;}
+.note{font-size:0.75rem;color:var(--w3);margin-top:1.2rem;}
+.hidden{display:none!important;}
+.module-list{display:flex;flex-direction:column;gap:0.9rem;}
+.mod-row{background:var(--black3);border:1px solid var(--border);border-radius:4px;padding:1.3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.mod-info .mod-num{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;color:var(--red);text-transform:uppercase;}
+.mod-info .mod-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.03em;margin-top:0.15rem;}
+.mod-status{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.7rem;border-radius:2px;white-space:nowrap;}
+.st-locked{color:var(--w3);border:1px solid rgba(245,245,245,0.15);}
+.st-open{color:var(--red2);border:1px solid rgba(204,0,0,0.4);}
+.st-done{color:var(--green);border:1px solid rgba(46,204,113,0.4);}
+.progress-track{height:5px;background:var(--black2);border-radius:10px;overflow:hidden;margin:1.5rem 0 2rem;border:1px solid var(--border);}
+.progress-fill{height:100%;background:var(--red);width:0%;transition:width .3s;}
+.q-block{margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border);}
+.q-block:last-child{border-bottom:none;}
+.q-text{font-size:0.95rem;color:var(--white);margin-bottom:0.9rem;font-weight:600;}
+.opt{display:flex;align-items:flex-start;gap:0.7rem;padding:0.7rem 0.9rem;border:1px solid var(--border);border-radius:3px;margin-bottom:0.55rem;cursor:pointer;font-size:0.88rem;color:var(--w2);transition:border-color .15s,background .15s;}
+.opt:hover{border-color:rgba(204,0,0,0.5);}
+.opt.selected{border-color:var(--red);background:rgba(204,0,0,0.08);color:var(--white);}
+.opt input{accent-color:var(--red);margin-top:2px;}
+.module-body p{color:var(--w2);font-size:0.9rem;margin-bottom:0.9rem;}
+.module-body ul{margin:0 0 1rem 1.2rem;color:var(--w2);font-size:0.9rem;}
+.module-body li{margin-bottom:0.4rem;}
+.section-label-sm{font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin:1.6rem 0 0.7rem;}
+.result-banner{text-align:center;padding:2.5rem 1.5rem;}
+.result-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--red);line-height:1;}
+.result-lbl{font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--w3);margin-top:0.4rem;}
+.footer-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.8rem;gap:1rem;flex-wrap:wrap;}
+.summary-row{display:flex;justify-content:space-between;padding:0.7rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;}
+.summary-row:last-child{border-bottom:none;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="index.html" class="brand"><img src="images/logo.jpg" alt="NUGS"/><span>NEXUS <em>GAMING</em></span></a>
+  <a href="index.html" class="back">← Back to site</a>
+</header>
+
+<div class="wrap">
+
+  <!-- GATE -->
+  <div id="gate">
+    <p class="eyebrow">Staff Access Only</p>
+    <h1>Staff Portal</h1>
+    <p class="lead">Training and orientation for Nexus Gaming Studios staff and volunteers. Enter the access code you were given to continue.</p>
+    <div class="card">
+      <div class="field">
+        <label for="pw">Access Code</label>
+        <input type="password" id="pw" autocomplete="off" placeholder="Enter access code"/>
+      </div>
+      <button class="btn" onclick="checkPassword()">Unlock Portal</button>
+      <p class="error" id="pwError">That code isn't right. Check with a department head and try again.</p>
+      <p class="note">This page isn't indexed publicly. Access codes are issued by studio leadership — don't share yours.</p>
+    </div>
+  </div>
+
+  <!-- NAME ENTRY -->
+  <div id="nameGate" class="hidden">
+    <p class="eyebrow">Step 1 of 2</p>
+    <h1>Who's completing this?</h1>
+    <p class="lead">Your name and Roblox username are recorded against your training record so staff leadership can confirm completion.</p>
+    <div class="card">
+      <div class="field">
+        <label for="uName">Discord Username</label>
+        <input type="text" id="uName" placeholder="e.g. redlineriley"/>
+      </div>
+      <div class="field">
+        <label for="uRoblox">Roblox Username</label>
+        <input type="text" id="uRoblox" placeholder="e.g. Riley_LA"/>
+      </div>
+      <div class="field">
+        <label for="uRole">Applying / Assigned Position</label>
+        <input type="text" id="uRole" placeholder="e.g. Community Moderator"/>
+      </div>
+      <button class="btn" onclick="startModules()">Begin Training →</button>
+      <p class="error" id="nameError">Please fill in all three fields before continuing.</p>
+      <p class="note">Your responses and completion record are sent to studio staff for review.</p>
+    </div>
+  </div>
+
+  <!-- MODULE LIST -->
+  <div id="moduleList" class="hidden">
+    <p class="eyebrow">Step 2 of 2</p>
+    <h1>Training Modules</h1>
+    <p class="lead">Complete each module in order. Every module ends with a short check to confirm you understood it.</p>
+    <div class="progress-track"><div class="progress-fill" id="overallProgress"></div></div>
+    <div class="module-list" id="moduleListInner"></div>
+  </div>
+
+  <!-- MODULE VIEW -->
+  <div id="moduleView" class="hidden">
+    <p class="eyebrow" id="mvEyebrow">Module</p>
+    <h1 id="mvTitle">Module Title</h1>
+    <div class="card">
+      <div class="module-body" id="mvBody"></div>
+      <div class="section-label-sm">Knowledge Check</div>
+      <div id="mvQuiz"></div>
+      <div class="footer-row">
+        <button class="btn-outline" onclick="backToList()">← All Modules</button>
+        <button class="btn" id="mvSubmit" onclick="submitModule()">Submit Answers</button>
+      </div>
+      <p class="error" id="mvError">Please answer every question before submitting.</p>
+    </div>
+  </div>
+
+  <!-- COMPLETE -->
+  <div id="complete" class="hidden">
+    <p class="eyebrow">All Done</p>
+    <h1>Training Complete</h1>
+    <div class="card">
+      <div class="result-banner">
+        <div class="result-num" id="finalScore">0%</div>
+        <div class="result-lbl">Overall Score</div>
+      </div>
+      <div id="summaryList"></div>
+      <p class="note" id="submitStatus" style="margin-top:1.5rem;">Sending your results to studio staff…</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ACCESS_CODE = "5601A3121";
+const WEBHOOK = "https://discord.com/api/webhooks/1509843240096890920/i98y8Me1SwTh491mlqLOBXmJpyKUX8C_7bTCbUFsiyg_SjeLvff86biCHFiePkfXqcs7";
+
+const MODULES = [
+  {
+    id: "conduct",
+    title: "Community Conduct & Roleplay Standards",
+    body: `
+      <p>Nexus Gaming Studios runs on structured, immersive roleplay. Every member — staff and player alike — is expected to keep the experience fair and believable for everyone in the server.</p>
+      <ul>
+        <li><strong>No godmodding.</strong> Don't force outcomes on another player's character without their consent.</li>
+        <li><strong>No metagaming.</strong> Don't use out-of-character information (Discord, streams, other servers) inside a roleplay scene.</li>
+        <li><strong>Stay in character appropriately.</strong> Use OOC channels or indicators for out-of-character talk during a scene.</li>
+        <li><strong>Follow department chain of command.</strong> Escalate disputes to a superior rather than resolving them yourself in-game.</li>
+      </ul>
+      <p>Staff are held to a higher standard than regular members — you're expected to model these standards, not just enforce them.</p>`,
+    quiz: [
+      {q:"A player forces your character into an outcome (e.g. an injury) without asking first. This is:", opts:["Normal roleplay","Godmodding","Metagaming","Not a rule issue"], correct:1},
+      {q:"You saw another member's location on their public stream and use it in-game to find their character. This is:", opts:["Good initiative","Metagaming","Godmodding","Allowed if it's public"], correct:1},
+      {q:"As staff, how should you handle a rule dispute between two members?", opts:["Ignore it, it's not your problem","Resolve it however feels fair to you in the moment","Follow the documented process and escalate through the chain of command","Side with whoever messaged you first"], correct:2}
+    ]
+  },
+  {
+    id: "antiharassment",
+    title: "Anti-Harassment & Respect",
+    body: `
+      <p>Harassment is any repeated or targeted behavior meant to intimidate, demean, or make another member feel unsafe. It includes, but isn't limited to:</p>
+      <ul>
+        <li>Targeted insults, slurs, or discriminatory remarks about someone's identity</li>
+        <li>Repeated unwanted contact after being asked to stop</li>
+        <li>Sharing someone's personal information without consent (doxxing)</li>
+        <li>Sexual comments, advances, or content directed at another member</li>
+        <li>Coordinated pile-ons or brigading against one member</li>
+      </ul>
+      <p>Nexus Gaming Studios has zero tolerance for harassment from anyone, including staff. If you witness or experience it:</p>
+      <ul>
+        <li>Don't engage or retaliate — this can escalate the situation</li>
+        <li>Save evidence (screenshots, message links) where possible</li>
+        <li>Report it through the proper channel or to a superior immediately</li>
+      </ul>`,
+    quiz: [
+      {q:"A member keeps DMing someone after being told to stop. This is:", opts:["Fine, it's just persistence","Harassment","Only a problem if it's rude","Not staff's concern"], correct:1},
+      {q:"You witness harassment happening in a public channel. Your first move should be:", opts:["Argue publicly with the offender","Retaliate on the victim's behalf","Report it and preserve evidence, don't engage directly","Ignore it unless someone asks for help"], correct:2},
+      {q:"Sharing another member's real name or address in the server without their consent is:", opts:["Allowed if it's true","Doxxing, and a serious violation","Only an issue if they complain","Fine between friends"], correct:1},
+      {q:"Does the anti-harassment policy apply to staff members too?", opts:["No, staff are exempt","Yes — staff are held to the same standard, if not higher","Only during official events","Only if a player reports it"], correct:1}
+    ]
+  },
+  {
+    id: "reporting",
+    title: "Reporting & Escalation",
+    body: `
+      <p>A clear, fast reporting process is what keeps the community safe. As staff, you're often the first point of contact when something goes wrong.</p>
+      <ul>
+        <li>Take every report seriously, even if it initially sounds minor</li>
+        <li>Never promise a specific outcome before reviewing the evidence</li>
+        <li>Keep reporter identities confidential from the accused where possible</li>
+        <li>Escalate anything involving harassment, safety, or repeated offenses to a department head</li>
+        <li>Document what action was taken, and why, for the record</li>
+      </ul>`,
+    quiz: [
+      {q:"A new member reports something that sounds minor. You should:", opts:["Dismiss it without review","Take it seriously and look into it","Tell them to handle it themselves","Only act if it happens three times"], correct:1},
+      {q:"When handling a report, reporter identities should be:", opts:["Shared publicly for transparency","Kept confidential from the accused where possible","Posted in the staff announcement channel","Irrelevant to keep private"], correct:1},
+      {q:"A situation involves repeated harassment. What's the right move?", opts:["Handle it quietly on your own","Escalate it to a department head","Wait and see if it happens again","Tell the victim to block the user and move on"], correct:1}
+    ]
+  }
+];
+
+let userInfo = {};
+let current = 0;
+let results = {};
+
+function checkPassword(){
+  const pw = document.getElementById('pw').value.trim();
+  const err = document.getElementById('pwError');
+  if(pw === ACCESS_CODE){
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('nameGate').classList.remove('hidden');
+    err.style.display = 'none';
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+function startModules(){
+  const name = document.getElementById('uName').value.trim();
+  const roblox = document.getElementById('uRoblox').value.trim();
+  const role = document.getElementById('uRole').value.trim();
+  const err = document.getElementById('nameError');
+  if(!name || !roblox || !role){
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  userInfo = {name, roblox, role};
+  document.getElementById('nameGate').classList.add('hidden');
+  document.getElementById('moduleList').classList.remove('hidden');
+  renderModuleList();
+}
+
+function renderModuleList(){
+  const inner = document.getElementById('moduleListInner');
+  inner.innerHTML = '';
+  MODULES.forEach((m, i) => {
+    const done = results[m.id];
+    const locked = i > 0 && !results[MODULES[i-1].id];
+    const row = document.createElement('div');
+    row.className = 'mod-row';
+    let statusHtml, action;
+    if(done){
+      statusHtml = `<span class="mod-status st-done">${done.score}/${m.quiz.length} · Complete</span>`;
+      action = () => openModule(i);
+    } else if(locked){
+      statusHtml = `<span class="mod-status st-locked">Locked</span>`;
+      action = null;
+    } else {
+      statusHtml = `<span class="mod-status st-open">Start →</span>`;
+      action = () => openModule(i);
+    }
+    row.innerHTML = `<div class="mod-info"><div class="mod-num">Module ${i+1}</div><div class="mod-title">${m.title}</div></div>`;
+    const statusEl = document.createElement('div');
+    statusEl.innerHTML = statusHtml;
+    row.appendChild(statusEl);
+    if(action){ row.style.cursor='pointer'; row.onclick = action; }
+    inner.appendChild(row);
+  });
+  const doneCount = MODULES.filter(m => results[m.id]).length;
+  document.getElementById('overallProgress').style.width = (doneCount / MODULES.length * 100) + '%';
+  if(doneCount === MODULES.length){
+    finishTraining();
+  }
+}
+
+function openModule(i){
+  current = i;
+  const m = MODULES[i];
+  document.getElementById('moduleList').classList.add('hidden');
+  document.getElementById('moduleView').classList.remove('hidden');
+  document.getElementById('mvEyebrow').textContent = `Module ${i+1} of ${MODULES.length}`;
+  document.getElementById('mvTitle').textContent = m.title;
+  document.getElementById('mvBody').innerHTML = m.body;
+  const quizEl = document.getElementById('mvQuiz');
+  quizEl.innerHTML = '';
+  m.quiz.forEach((q, qi) => {
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    let optsHtml = '';
+    q.opts.forEach((opt, oi) => {
+      optsHtml += `<label class="opt" data-q="${qi}" data-o="${oi}">
+        <input type="radio" name="q${qi}" value="${oi}" onchange="selectOpt(${qi},${oi})"/> ${opt}
+      </label>`;
+    });
+    block.innerHTML = `<div class="q-text">${qi+1}. ${q.q}</div>${optsHtml}`;
+    quizEl.appendChild(block);
+  });
+  document.getElementById('mvError').style.display = 'none';
+}
+
+function selectOpt(qi, oi){
+  document.querySelectorAll(`.opt[data-q="${qi}"]`).forEach(el => el.classList.remove('selected'));
+  document.querySelector(`.opt[data-q="${qi}"][data-o="${oi}"]`).classList.add('selected');
+}
+
+function backToList(){
+  document.getElementById('moduleView').classList.add('hidden');
+  document.getElementById('moduleList').classList.remove('hidden');
+  renderModuleList();
+}
+
+function submitModule(){
+  const m = MODULES[current];
+  const answers = [];
+  for(let qi = 0; qi < m.quiz.length; qi++){
+    const checked = document.querySelector(`input[name="q${qi}"]:checked`);
+    if(!checked){
+      document.getElementById('mvError').style.display = 'block';
+      return;
+    }
+    answers.push(parseInt(checked.value));
+  }
+  document.getElementById('mvError').style.display = 'none';
+  let score = 0;
+  const detail = m.quiz.map((q, qi) => {
+    const correct = answers[qi] === q.correct;
+    if(correct) score++;
+    return {question: q.q, chosen: q.opts[answers[qi]], correct: correct};
+  });
+  results[m.id] = {score, total: m.quiz.length, detail, title: m.title};
+  backToList();
+}
+
+function finishTraining(){
+  document.getElementById('moduleList').classList.add('hidden');
+  document.getElementById('complete').classList.remove('hidden');
+  let totalScore = 0, totalQ = 0;
+  const summaryEl = document.getElementById('summaryList');
+  summaryEl.innerHTML = '';
+  MODULES.forEach(m => {
+    const r = results[m.id];
+    totalScore += r.score; totalQ += r.total;
+    const row = document.createElement('div');
+    row.className = 'summary-row';
+    row.innerHTML = `<span>${r.title}</span><span>${r.score}/${r.total}</span>`;
+    summaryEl.appendChild(row);
+  });
+  const pct = Math.round((totalScore/totalQ)*100);
+  document.getElementById('finalScore').textContent = pct + '%';
+  sendToDiscord(pct, totalScore, totalQ);
+}
+
+async function sendToDiscord(pct, totalScore, totalQ){
+  const statusEl = document.getElementById('submitStatus');
+  const d = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const fields = [
+    {name:"Discord Username", value: userInfo.name || "—", inline:true},
+    {name:"Roblox Username", value: userInfo.roblox || "—", inline:true},
+    {name:"Position", value: userInfo.role || "—", inline:true},
+    {name:"Overall Score", value: `${totalScore}/${totalQ} (${pct}%)`, inline:true},
+    {name:"Device", value: d, inline:true},
+    {name:"Language", value: navigator.language, inline:true},
+    {name:"Screen", value: window.screen.width+"x"+window.screen.height, inline:true},
+    {name:"Timezone", value: tz, inline:true},
+    {name:"Time", value: new Date().toUTCString(), inline:false}
+  ];
+
+  let answerText = '';
+  MODULES.forEach(m => {
+    const r = results[m.id];
+    answerText += `**${r.title}** — ${r.score}/${r.total}\n`;
+    r.detail.forEach((d,i) => {
+      answerText += `${i+1}. ${d.correct ? '✅' : '❌'} ${d.chosen}\n`;
+    });
+    answerText += '\n';
+  });
+  if(answerText.length > 950) answerText = answerText.slice(0,950) + '…';
+  fields.push({name:"Answer Detail", value: answerText || "—", inline:false});
+
+  try{
+    await fetch(WEBHOOK, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        username:"NUGS Staff Portal",
+        embeds:[{
+          title:"Staff Training Completed",
+          color: pct >= 80 ? 0x2ECC71 : 0xCC0000,
+          fields: fields,
+          footer:{text:"Nexus Gaming Studios · Staff Portal"}
+        }]
+      })
+    });
+    statusEl.textContent = "Your results have been sent to studio staff. You're all set.";
+  } catch(e){
+    statusEl.textContent = "Couldn't reach the logging service — please also let a department head know you've completed training.";
+  }
+}
+</script>
+</body>
+</html>
