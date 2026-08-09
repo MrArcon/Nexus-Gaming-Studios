@@ -12,7 +12,7 @@ body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;
 .wrap{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem;}
 header.top{max-width:760px;margin:0 auto;padding:2rem 1.5rem 0;display:flex;align-items:center;justify-content:space-between;}
 .brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--white);}
-.brand img{width:34px;height:34px;border-radius:6px;border:1px solid rgba(204,0,0,0.4);}
+.brand img{width:auto;height:30px;}
 .brand span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;}
 .brand span em{color:var(--red);font-style:normal;}
 .back{font-size:0.72rem;color:var(--w3);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;}
@@ -53,6 +53,10 @@ input[type=text]:focus,input[type=password]:focus{border-color:var(--red);}
 .module-body p{color:var(--w2);font-size:0.9rem;margin-bottom:0.9rem;}
 .module-body ul{margin:0 0 1rem 1.2rem;color:var(--w2);font-size:0.9rem;}
 .module-body li{margin-bottom:0.4rem;}
+.module-body h4{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.04em;color:var(--red2);margin:1.5rem 0 0.6rem;text-transform:uppercase;}
+.module-body h4:first-child{margin-top:0;}
+.module-body .tag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--red2);border:1px solid rgba(204,0,0,0.4);border-radius:2px;padding:0.15rem 0.5rem;margin-bottom:0.5rem;}
+.module-body .divider{height:1px;background:var(--border);margin:1.4rem 0;}
 .section-label-sm{font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin:1.6rem 0 0.7rem;}
 .result-banner{text-align:center;padding:2.5rem 1.5rem;}
 .result-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--red);line-height:1;}
@@ -65,7 +69,7 @@ input[type=text]:focus,input[type=password]:focus{border-color:var(--red);}
 <body>
 
 <header class="top">
-  <a href="index.html" class="brand"><img src="images/logo.jpg" alt="NUGS"/><span>NEXUS <em>GAMING</em></span></a>
+  <a href="index.html" class="brand"><img src="images/nu-logo.png" alt="NUGS"/><span>NEXUS <em>GAMING</em></span></a>
   <a href="index.html" class="back">← Back to site</a>
 </header>
 
@@ -158,64 +162,113 @@ const WEBHOOK = "https://discord.com/api/webhooks/1509843240096890920/i98y8Me1Sw
 
 const MODULES = [
   {
-    id: "conduct",
-    title: "Community Conduct & Roleplay Standards",
+    id: "policies",
+    title: "Staff Handbook — Rules & Policies",
     body: `
-      <p>Nexus Gaming Studios runs on structured, immersive roleplay. Every member — staff and player alike — is expected to keep the experience fair and believable for everyone in the server.</p>
-      <ul>
-        <li><strong>No godmodding.</strong> Don't force outcomes on another player's character without their consent.</li>
-        <li><strong>No metagaming.</strong> Don't use out-of-character information (Discord, streams, other servers) inside a roleplay scene.</li>
-        <li><strong>Stay in character appropriately.</strong> Use OOC channels or indicators for out-of-character talk during a scene.</li>
-        <li><strong>Follow department chain of command.</strong> Escalate disputes to a superior rather than resolving them yourself in-game.</li>
-      </ul>
-      <p>Staff are held to a higher standard than regular members — you're expected to model these standards, not just enforce them.</p>`,
+      <span class="tag">Based on the NUGS Staff Handbook v1.0</span>
+      <p>This module walks through the core policies every Career and Volunteer staff member is expected to know. It covers who has authority over what, how the two staff tracks differ, and the ground rules around conduct, confidentiality, and discipline.</p>
+
+      <h4>Studio Structure & Authority</h4>
+      <p>The Chief Executive Officer holds final authority over the entire Studio, including the Board of Directors — no other position can act contrary to a CEO decision. Day-to-day direction runs through the Board of Directors and the Chief Operations Officer / Chief Financial Officer, who report to the Board. The Department of Standards &amp; Ethics handles the Code of Conduct, grievances, and investigations, and reports to the Board. The Department of Member Services (Team Lead and Associates) runs in-game moderation.</p>
+
+      <h4>Career Staff vs. Volunteer Staff</h4>
+      <p>Career positions run the Studio and build the game (executive leadership, Board, Standards &amp; Ethics, Community R&amp;D, Public Relations) and are paid per employment offer. Volunteer positions exist only within the Department of Member Services, are unpaid but eligible for stipends and recognition, and require a 4 hour/week minimum commitment. Both tracks are bound by the full Handbook — including confidentiality and IP terms — with no exceptions for unpaid status.</p>
+
+      <h4>Code of Conduct</h4>
+      <p>Every staff member is expected to show up for committed shifts and meetings, communicate blockers proactively rather than at the deadline, deliver what they commit to, give feedback professionally, and treat all staff and community members with respect. NUGS doesn't operate a physical studio — our Discord server and Roblox development space are official Studio spaces, and the Code of Conduct applies there in full, including in voice channels and Roblox Studio collaboration sessions.</p>
+
+      <h4>Onboarding & Probation</h4>
+      <p>Before receiving assignments or systems access, new staff must attend orientation, sign the Handbook Acknowledgment Page, sign the NDA/IP Agreement, and complete Anti-Harassment training. All new staff — Career and Volunteer — serve a four-week probationary period from their first assigned task, with check-ins at the two- and four-week marks.</p>
+
+      <h4>Confidentiality, NDAs & IP</h4>
+      <p>All staff sign an NDA covering unreleased content, code, and internal documentation — this applies equally to Volunteer Staff, with no reduction for unpaid status, and survives departure from the Studio. Work created within the scope of a Studio position, using Studio resources, is owned by Nexus Gaming Studios. Staff may reference their contributions in a personal portfolio, but may not reuse Studio assets or IP in a separate commercial project without written permission.</p>
+
+      <h4>Moderation Escalation</h4>
+      <p>Member Services Associates can act independently on warnings and short mutes. Any suspension longer than 72 hours, or any permanent ban, requires Team Lead review before it's finalized. Severe violations — hate speech, threats, doxxing, targeted harassment campaigns — escalate immediately to the Team Lead.</p>
+
+      <h4>Discipline & Grievances</h4>
+      <p>Outside of serious misconduct, discipline is progressive: informal conversation, written warning, final written warning or reassignment, then removal or termination. Certain conduct — harassment, discrimination, theft, serious confidentiality breaches, or safety risks — can result in immediate removal without progressive steps. A staff member who disagrees with a decision can file a grievance with the Department of Standards &amp; Ethics, escalating to the CEO as the Studio's final authority.</p>
+
+      <h4>Conflict of Interest & Social Media</h4>
+      <p>Staff must disclose situations that could create a conflict of interest — such as a close personal relationship with someone they supervise, or a financial interest in a Studio vendor — to Standards &amp; Ethics or the CEO. Only Public Relations-approved material may be posted before a project's public reveal, and personal posts about Studio work must read as personal opinion, not an official statement.</p>
+      <div class="divider"></div>`,
     quiz: [
-      {q:"A player forces your character into an outcome (e.g. an injury) without asking first. This is:", opts:["Normal roleplay","Godmodding","Metagaming","Not a rule issue"], correct:1},
-      {q:"You saw another member's location on their public stream and use it in-game to find their character. This is:", opts:["Good initiative","Metagaming","Godmodding","Allowed if it's public"], correct:1},
-      {q:"As staff, how should you handle a rule dispute between two members?", opts:["Ignore it, it's not your problem","Resolve it however feels fair to you in the moment","Follow the documented process and escalate through the chain of command","Side with whoever messaged you first"], correct:2}
+      {q:"Who holds final authority over the entire Studio, including the Board of Directors?", opts:["The Chief Operations Officer","The Chief Executive Officer","The Member Services Team Lead","The Department of Standards & Ethics"], correct:1},
+      {q:"Which department is responsible for the Code of Conduct, grievances, and investigations?", opts:["Public Relations","Community Research & Development","Department of Standards & Ethics","Member Services"], correct:2},
+      {q:"Where do the Code of Conduct and Handbook apply for a Studio with no physical office?", opts:["Nowhere until a physical space exists","Only during official events","In the official Discord server and Roblox development space, in full", "Only in Career staff meetings"], correct:2},
+      {q:"Volunteer positions at NUGS exist within which department?", opts:["Community Research & Development", "Department of Member Services", "Department of Public Relations", "Any department, by choice"], correct:1},
+      {q:"How long is the probationary period for all new staff?", opts:["One week","Two weeks","Four weeks","No probationary period"], correct:2},
+      {q:"Does the NDA still apply to Volunteer Staff, and after they leave?", opts:["No, volunteers are exempt","Yes — it applies equally to volunteers and survives departure","Only while actively volunteering","Only for Career staff"], correct:1},
+      {q:"Who owns work created by staff within the scope of their Studio position?", opts:["The individual staff member","Nexus Gaming Studios","Whoever created the original concept","No one, it's public domain"], correct:1},
+      {q:"A Member Services Associate wants to issue a permanent ban. What's required?", opts:["They can finalize it immediately","Team Lead review before it's finalized","Approval from the CEO only","Nothing, associates have full authority"], correct:1},
+      {q:"Which of these can result in immediate removal without progressive discipline?", opts:["Being late to a meeting once","A minor scheduling conflict","Harassment or a serious confidentiality breach","Disagreeing with a supervisor"], correct:2},
+      {q:"Before a project's public reveal, who can approve material to be posted publicly about it?", opts:["Any staff member", "Only the Department of Public Relations", "Volunteers only", "No approval is needed"], correct:1}
     ]
   },
   {
     id: "antiharassment",
     title: "Anti-Harassment & Respect",
     body: `
-      <p>Harassment is any repeated or targeted behavior meant to intimidate, demean, or make another member feel unsafe. It includes, but isn't limited to:</p>
+      <span class="tag">Standard workplace-style Anti-Harassment training</span>
+      <p>This module covers what harassment is, why it matters, and what's expected of every staff member — whether you're on the receiving end, a witness, or handling a report.</p>
+
+      <h4>What Counts as Harassment</h4>
+      <p>Harassment is unwelcome conduct based on a person's identity or characteristics — race, color, religion, sex, gender identity or expression, sexual orientation, national origin, age, disability, or similar — that creates an intimidating, hostile, or offensive environment. It can take several forms:</p>
       <ul>
-        <li>Targeted insults, slurs, or discriminatory remarks about someone's identity</li>
-        <li>Repeated unwanted contact after being asked to stop</li>
-        <li>Sharing someone's personal information without consent (doxxing)</li>
-        <li>Sexual comments, advances, or content directed at another member</li>
-        <li>Coordinated pile-ons or brigading against one member</li>
+        <li><strong>Verbal</strong> — slurs, targeted insults, demeaning jokes or comments</li>
+        <li><strong>Written/visual</strong> — offensive images, memes, or messages directed at someone</li>
+        <li><strong>Physical or persistent</strong> — unwanted contact, following, or repeated messages after being asked to stop</li>
+        <li><strong>Quid pro quo</strong> — conditioning a benefit (a role, an opportunity) on tolerating unwanted conduct</li>
       </ul>
-      <p>Nexus Gaming Studios has zero tolerance for harassment from anyone, including staff. If you witness or experience it:</p>
-      <ul>
-        <li>Don't engage or retaliate — this can escalate the situation</li>
-        <li>Save evidence (screenshots, message links) where possible</li>
-        <li>Report it through the proper channel or to a superior immediately</li>
-      </ul>`,
+      <p>It doesn't have to be repeated to count — a single severe incident can still be harassment. And it isn't limited to conduct aimed at you directly; a hostile environment can affect anyone who has to witness or work around it.</p>
+
+      <h4>Everyone's Responsibility</h4>
+      <p>Staff are held to the same standard as everyone else — arguably a higher one, since staff are expected to model the behavior they enforce. If you witness harassment, the expectation isn't to confront the person yourself; it's to document what you saw and report it through the proper channel.</p>
+
+      <h4>Reporting & What Happens Next</h4>
+      <p>Reports go to your supervisor, the Department of Standards &amp; Ethics, or the CEO. Reports made in good faith are investigated promptly and as confidentially as possible, and never result in retaliation against the person who reported. Retaliation against someone for raising a good-faith concern is itself a serious violation.</p>
+      <div class="divider"></div>`,
     quiz: [
-      {q:"A member keeps DMing someone after being told to stop. This is:", opts:["Fine, it's just persistence","Harassment","Only a problem if it's rude","Not staff's concern"], correct:1},
-      {q:"You witness harassment happening in a public channel. Your first move should be:", opts:["Argue publicly with the offender","Retaliate on the victim's behalf","Report it and preserve evidence, don't engage directly","Ignore it unless someone asks for help"], correct:2},
-      {q:"Sharing another member's real name or address in the server without their consent is:", opts:["Allowed if it's true","Doxxing, and a serious violation","Only an issue if they complain","Fine between friends"], correct:1},
-      {q:"Does the anti-harassment policy apply to staff members too?", opts:["No, staff are exempt","Yes — staff are held to the same standard, if not higher","Only during official events","Only if a player reports it"], correct:1}
+      {q:"Does a single severe incident count as harassment, or does it have to be repeated?", opts:["It must happen at least three times", "A single severe incident can still count", "Only repeated conduct ever counts", "Only physical conduct counts"], correct:1},
+      {q:"Conditioning a role or opportunity on someone tolerating unwanted conduct is:", opts:["A normal negotiation","Quid pro quo harassment","Only an issue if it's in writing","Not covered by this policy"], correct:1},
+      {q:"If you witness harassment happening to someone else, what's the expected first step?", opts:["Confront the person yourself on the spot", "Ignore it since it's not about you", "Document what you saw and report it through the proper channel", "Wait for the victim to report it first"], correct:2},
+      {q:"What happens to someone who retaliates against a staff member for a good-faith harassment report?", opts:["Nothing, retaliation isn't addressed","It's treated as its own serious violation","Only the original report is investigated","It's allowed if the report turns out to be unfounded"], correct:1},
+      {q:"Are staff members held to a lower standard than regular community members under this policy?", opts:["Yes, staff get more leeway", "No — staff are held to the same standard or higher, since they're expected to model it", "Only Career staff are held to this standard", "The policy doesn't apply to staff"], correct:1}
     ]
   },
   {
-    id: "reporting",
-    title: "Reporting & Escalation",
+    id: "ingame",
+    title: "In-Game Rules & Regulations",
     body: `
-      <p>A clear, fast reporting process is what keeps the community safe. As staff, you're often the first point of contact when something goes wrong.</p>
+      <span class="tag">Based on the Project: Los Angeles Server Rules</span>
+      <p>These are the roleplay-specific rules that keep Project: Los Angeles fair and immersive. As staff, you're expected to know these well enough to both follow them and explain a ruling when a player asks why.</p>
+
+      <h4>Zero Tolerance Rules</h4>
+      <p><strong>Exploiting or cheating</strong> — using exploits, hacks, or unauthorized third-party software for an advantage — is an immediate permanent ban with no appeals. <strong>Real-life threats and doxxing</strong> — sharing or threatening to share someone's private information — is also an immediate permanent ban, and may be escalated beyond the Studio.</p>
+
+      <h4>Core Roleplay Rules</h4>
       <ul>
-        <li>Take every report seriously, even if it initially sounds minor</li>
-        <li>Never promise a specific outcome before reviewing the evidence</li>
-        <li>Keep reporter identities confidential from the accused where possible</li>
-        <li>Escalate anything involving harassment, safety, or repeated offenses to a department head</li>
-        <li>Document what action was taken, and why, for the record</li>
-      </ul>`,
+        <li><strong>RDM (Random Deathmatch)</strong> — harming another player without a valid, established in-character reason. Example: shooting a civilian with no prior interaction.</li>
+        <li><strong>VDM (Vehicle Deathmatch)</strong> — using a vehicle as a weapon without roleplay justification. Example: running over pedestrians for no in-character reason.</li>
+        <li><strong>FRP (Fear Roleplay)</strong> — failing to realistically value your character's life when facing a credible threat. Example: charging armed officers while unarmed and outnumbered.</li>
+        <li><strong>NLR (New Life Rule)</strong> — after your character dies, you can't return to the scene for at least 10 minutes, and your character retains no memory of what led to their death.</li>
+        <li><strong>Powergaming</strong> — forcing an outcome on another player without giving them a chance to respond, or performing physically impossible actions. Example: an /me that "instantly incapacitates" someone.</li>
+        <li><strong>Metagaming</strong> — using out-of-character information (Discord, a stream) to influence in-character decisions. Example: watching a streamer to find their character in-game.</li>
+        <li><strong>Combat logging</strong> — disconnecting to avoid an active roleplay scenario like an arrest or consequence.</li>
+      </ul>
+
+      <h4>Staff Authority & Appeals</h4>
+      <p>Active staff decisions must be respected in the moment — players shouldn't argue publicly or try to circumvent staff authority in-server. A player who believes a decision was wrong can always submit a formal appeal through the designated Discord channel instead.</p>
+      <div class="divider"></div>`,
     quiz: [
-      {q:"A new member reports something that sounds minor. You should:", opts:["Dismiss it without review","Take it seriously and look into it","Tell them to handle it themselves","Only act if it happens three times"], correct:1},
-      {q:"When handling a report, reporter identities should be:", opts:["Shared publicly for transparency","Kept confidential from the accused where possible","Posted in the staff announcement channel","Irrelevant to keep private"], correct:1},
-      {q:"A situation involves repeated harassment. What's the right move?", opts:["Handle it quietly on your own","Escalate it to a department head","Wait and see if it happens again","Tell the victim to block the user and move on"], correct:1}
+      {q:"A player shoots a random civilian with no prior roleplay interaction or escalation. This is:", opts:["RDM", "VDM", "Powergaming", "Fear RP violation"], correct:0},
+      {q:"A player intentionally runs over pedestrians with their car with no in-character justification. This is:", opts:["RDM", "VDM", "Metagaming", "NLR violation"], correct:1},
+      {q:"An unarmed player, outnumbered by armed officers, charges at them instead of complying. This is a violation of:", opts:["NLR", "VDM", "FRP (Fear Roleplay)", "Combat logging"], correct:2},
+      {q:"After dying, a player returns to the same scene 2 minutes later using knowledge from before their death. This breaks:", opts:["NLR (New Life Rule)", "RDM", "Powergaming", "Staff Authority"], correct:0},
+      {q:"A player uses a /me command to instantly incapacitate another player, giving them no chance to react. This is:", opts:["Fair roleplay", "Powergaming", "Metagaming", "VDM"], correct:1},
+      {q:"A player watches another member's public stream to find their character's location in-game. This is:", opts:["Good strategy", "RDM", "Metagaming", "Allowed since the stream is public"], correct:2},
+      {q:"What's the outcome for confirmed exploiting or cheating?", opts:["A warning and roleplay reset", "A temporary mute", "Immediate permanent ban with no appeals", "It depends entirely on the player's history"], correct:2},
+      {q:"A player disagrees with a staff decision made during an active scenario. What should they do?", opts:["Argue publicly in-server until staff reverses it", "Disconnect to avoid the outcome", "Comply in the moment and submit a formal appeal in Discord", "Ignore staff and continue as normal"], correct:2}
     ]
   }
 ];
